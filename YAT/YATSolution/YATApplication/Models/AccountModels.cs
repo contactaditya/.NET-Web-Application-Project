@@ -21,16 +21,18 @@ namespace YATApplication.Models
     [Table("UserProfile")]
     public class UserProfile
     {
-        public UserProfile()
-        {
-            this.Likes = new HashSet<Likes>();
-        }
+        //YAT.  I am pretty sure we need to do this but it does not work
+        //public UserProfile()
+        //{
+        //    this.Likes = new HashSet<Likes>();
+        //}
 
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
 
+        /*
         //YAT properties
         [MinLength(5), MaxLength(5)]
         public int Zip { get; set; }
@@ -52,7 +54,7 @@ namespace YATApplication.Models
 
         //many to many relationship
         public virtual ICollection<Likes> Likes { get; private set; }
-
+        */
     }
 
     public class RegisterExternalLoginModel
