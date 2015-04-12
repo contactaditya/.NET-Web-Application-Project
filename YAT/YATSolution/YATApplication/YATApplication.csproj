@@ -191,6 +191,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Connections.cs" />
+    <Compile Include="Models\Likes.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\YATContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
