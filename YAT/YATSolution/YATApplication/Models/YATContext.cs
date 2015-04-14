@@ -16,9 +16,9 @@ namespace YATApplication.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserProfile>()
-                .HasMany(t => t.Likes)
-                .WithMany(t => t.Users);
+            //modelBuilder.Entity<UserProfile>()
+            //    .HasMany(t => t.Likes)
+            //    .WithMany(t => t.Users);
         }
     }
 }
