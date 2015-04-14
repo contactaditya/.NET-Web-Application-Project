@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATApplication", "YATApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATApplication.Tests", "YATApplication.Tests\YATApplication.Tests.csproj", "{2BB1A201-3337-4ED7-9D44-51F257C335C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATApplication.Data", "YATApplication.Data\YATApplication.Data.csproj", "{C9C3258D-E0D4-4B64-B8FF-96044785C880}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{98101542-9888-4DC7-BBD4-092D42FC17A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{2BB1A201-3337-4ED7-9D44-51F257C335C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB1A201-3337-4ED7-9D44-51F257C335C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB1A201-3337-4ED7-9D44-51F257C335C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98101542-9888-4DC7-BBD4-092D42FC17A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98101542-9888-4DC7-BBD4-092D42FC17A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98101542-9888-4DC7-BBD4-092D42FC17A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98101542-9888-4DC7-BBD4-092D42FC17A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
