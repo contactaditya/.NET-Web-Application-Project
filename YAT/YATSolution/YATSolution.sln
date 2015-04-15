@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATApplication.Tests", "YAT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATApplication.Data", "YATApplication.Data\YATApplication.Data.csproj", "{C9C3258D-E0D4-4B64-B8FF-96044785C880}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{54E38271-B46B-432F-AC76-6B7E8E9ECBE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9C3258D-E0D4-4B64-B8FF-96044785C880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E38271-B46B-432F-AC76-6B7E8E9ECBE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E38271-B46B-432F-AC76-6B7E8E9ECBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E38271-B46B-432F-AC76-6B7E8E9ECBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E38271-B46B-432F-AC76-6B7E8E9ECBE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
