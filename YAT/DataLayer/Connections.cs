@@ -15,12 +15,12 @@ namespace DataLayer
         
         [Required]
         [ForeignKey("Id")]
-        public User From { get; set; }
+        public virtual User From { get; set; }
         [Required]
         [ForeignKey("Id")]
-        public User To { get; set; }
+        public virtual User To { get; set; }
         
-        public bool IsRemovied { get; set; }
+        public bool IsRemoved { get; set; }
         public bool IsBlocked { get; set; }
     }
 

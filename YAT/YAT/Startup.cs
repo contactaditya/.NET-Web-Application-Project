@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using BusinessLayer;
 
 [assembly: OwinStartupAttribute(typeof(YAT.Startup))]
 namespace YAT
@@ -8,7 +9,11 @@ namespace YAT
     {
         public void Configuration(IAppBuilder app)
         {
+            Builder builder = new Builder();
+            builder.putData();
+            builder.getData();
             ConfigureAuth(app);
+            
         }
     }
 }

@@ -172,6 +172,18 @@
     <Compile Include="Migrations\201504150211523_InitialCreate1.Designer.cs">
       <DependentUpon>201504150211523_InitialCreate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504150719245_fixing name.cs" />
+    <Compile Include="Migrations\201504150719245_fixing name.Designer.cs">
+      <DependentUpon>201504150719245_fixing name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504150737510_many to many relation is bad.cs" />
+    <Compile Include="Migrations\201504150737510_many to many relation is bad.Designer.cs">
+      <DependentUpon>201504150737510_many to many relation is bad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504150758536_addind foreign key.cs" />
+    <Compile Include="Migrations\201504150758536_addind foreign key.Designer.cs">
+      <DependentUpon>201504150758536_addind foreign key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -248,6 +260,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{25759342-f44f-43f9-a5eb-ccb7013c5b36}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{55173fe3-f2bf-427e-9289-fa8d4fd82202}</Project>
       <Name>DataLayer</Name>
@@ -259,6 +275,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504150211523_InitialCreate1.resx">
       <DependentUpon>201504150211523_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504150719245_fixing name.resx">
+      <DependentUpon>201504150719245_fixing name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504150737510_many to many relation is bad.resx">
+      <DependentUpon>201504150737510_many to many relation is bad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504150758536_addind foreign key.resx">
+      <DependentUpon>201504150758536_addind foreign key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

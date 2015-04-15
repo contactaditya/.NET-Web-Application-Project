@@ -19,6 +19,9 @@ namespace DataLayer
             modelBuilder.Entity<User>()
                 .HasMany(t => t.Likes)
                 .WithMany(t => t.Users);
+            modelBuilder.Entity<Likes>()
+                .HasMany(t => t.Users)
+                .WithMany(t => t.Likes);
         }
     }
 }

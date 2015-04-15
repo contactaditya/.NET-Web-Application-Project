@@ -16,11 +16,9 @@ namespace DataLayer
             this.Likes = new HashSet<Likes>();
         }
 
-        //YAT properties
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
        
         public int Zip { get; set; }
         [MinLength(1), MaxLength(30)]

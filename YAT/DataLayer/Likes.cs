@@ -24,7 +24,7 @@ namespace DataLayer
         //navigation properties
         //a user can like many movies
         //a movie can have many users liking it
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; private set; }
 
     }
 
