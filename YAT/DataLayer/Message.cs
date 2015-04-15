@@ -17,9 +17,9 @@ namespace DataLayer
         public string Text { get; set; }
         
         public int FromId { get; set; }
-        public User From { get; set; }
+        public virtual User From { get; set; }
         public int ToId { get; set; }
-        public User To { get; set; }
+        public virtual User To { get; set; }
     
         [Required]
         public DateTime Date { get; set; }
