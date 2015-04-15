@@ -33,8 +33,10 @@ namespace DataLayer
         public DateTime LastLoginDate { get; set; }
         
         //navigtaion properties
-        public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<Connections> Connections { get; set; }
+        public virtual ICollection<Message> FromMessages { get; set; }
+        public virtual ICollection<Message> ToMessages { get; set; }
+        public virtual ICollection<Connections> FromConnections { get; set; }
+        public virtual ICollection<Connections> ToConnections { get; set; }
 
         //many to many relationship
         public virtual ICollection<Likes> Likes { get; private set; }
