@@ -34,7 +34,7 @@ namespace DataLayer
         
         //navigtaion properties
         public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<Message> Connections { get; set; }
+        public virtual ICollection<Connections> Connections { get; set; }
 
         //many to many relationship
         public virtual ICollection<Likes> Likes { get; private set; }
