@@ -12,8 +12,11 @@ namespace DataLayer
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-               
+        
+        public int FromId { get; set; } 
         public virtual User From { get; set; }
+      
+        public int ToId { get; set; } 
         public virtual User To { get; set; }
         
         public bool IsRemoved { get; set; }
