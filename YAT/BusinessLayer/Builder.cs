@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
+using System.Diagnostics;
 
 namespace BusinessLayer
 {
@@ -94,7 +95,8 @@ namespace BusinessLayer
                 var users = from user in db.User select user;
                 foreach (var user in users)
                 {
-                    Console.WriteLine(user.Zip);
+                    Debug.WriteLine(user.Zip);
+                    Debug.WriteLine(user.Likes);
                 }
             }
         }
