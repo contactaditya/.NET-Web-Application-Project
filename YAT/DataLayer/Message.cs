@@ -15,12 +15,12 @@ namespace DataLayer
         [Required]
         [MinLength(1), MaxLength(200)]
         public string Text { get; set; }
-        [Required]
-        [ForeignKey("Id")]
+        
+        public int FromId { get; set; }
         public virtual User From { get; set; }
-        [Required]
-        [ForeignKey("Id")]
+        public int ToId { get; set; }
         public virtual User To { get; set; }
+    
         [Required]
         public DateTime Date { get; set; }
         public bool Read { get; set; }

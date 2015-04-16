@@ -89,20 +89,20 @@ namespace BusinessLayer
                 sue.Likes.Add(gump);
                 Ariel.Likes.Add(nemo);
 
-                //var sueConnection = new Connections { From = sue, To = mike, IsBlocked = true, IsRemoved=false };
-                //var sueConnection2 = new Connections { From = sue, To = paul, IsBlocked=false, IsRemoved = true };
-                //dbContext.Connections.Add(sueConnection);
-                //dbContext.Connections.Add(sueConnection2);
+                var sueConnection = new Connections { From = sue, To = mike, IsBlocked = true, IsRemoved=false };
+                var sueConnection2 = new Connections { From = sue, To = paul, IsBlocked=false, IsRemoved = true };
+                dbContext.Connections.Add(sueConnection);
+                dbContext.Connections.Add(sueConnection2);
                 
-                //var message = new Message
-                //{
-                //    Text = "Hi there",
-                //    From = mike,
-                //    To = sue,
-                //    Date = DateTime.Now,
-                //    Read = false
-                //};
-                //dbContext.Messages.Add(message);
+                var message = new Message
+                {
+                    Text = "Hi there",
+                    From = mike,
+                    To = sue,
+                    Date = DateTime.Now,
+                    Read = false
+                };
+                dbContext.Messages.Add(message);
                 dbContext.SaveChanges();
             }
         }
