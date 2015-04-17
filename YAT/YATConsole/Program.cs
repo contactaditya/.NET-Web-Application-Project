@@ -32,6 +32,13 @@ namespace YATConsole
             a.movieRank();
             a.genderCount();
 
+            //Test searching users
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: false, zipcode: 11791, SearcherID: 1);
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.FirstName + " " + user.LastName);
+
+            }
 
             Console.WriteLine("\nDone!");
             Console.ReadKey();

@@ -80,7 +80,7 @@ namespace BusinessLayer
                 sue.Likes.Add(gump);
 
                 Likes movie = dbContext.Likes.FirstOrDefault(L => L.Movie == "Avengers");
-                Debug.Print(movie.Movie + " " + movie.Id);
+               // Debug.Print(movie.Movie + " " + movie.Id);
                 Ariel.Likes.Add(movie);
 
                 var sueConnection = new Connections { From = sue, To = mike, IsBlocked = true, IsRemoved=false };

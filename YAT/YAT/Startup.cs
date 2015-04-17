@@ -9,9 +9,9 @@ namespace YAT
     {
         public void Configuration(IAppBuilder app)
         {
-            Builder builder = new Builder();
-            builder.putData();
-            builder.getData();
+           // Builder builder = new Builder();
+            //builder.putData();
+          //  builder.getData();
             ConfigureAuth(app);
             
         }
