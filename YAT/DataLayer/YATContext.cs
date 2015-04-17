@@ -24,6 +24,16 @@ namespace DataLayer
             modelBuilder.Entity<Likes>()
                 .HasMany(t => t.Users)
                 .WithMany(t => t.Likes);
+            modelBuilder.Entity<Message>()
+                .HasRequired(m => m.To).
+                WithMany(t => t.ToMessages).
+                HasForeignKey(m => m.ToId).
+                WillCascadeOnDelete(false);
+            modelBuilder.Entity<Message>()
+                .HasRequired(m => m.From)
+                .WithMany(t => t.FromMessages)
+                .HasForeignKey(m => m.FromId)
+                .WillCascadeOnDelete(false);
         }
     }
 }
