@@ -63,6 +63,10 @@
       <Project>{25759342-f44f-43f9-a5eb-ccb7013c5b36}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{55173fe3-f2bf-427e-9289-fa8d4fd82202}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
