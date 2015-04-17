@@ -25,8 +25,6 @@ namespace BusinessLayer
                     Deleted = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
-                    
-
                 };
                 var mike = new User
                 {
@@ -54,35 +52,27 @@ namespace BusinessLayer
                     LastLoginDate = DateTime.Now,
 
                 };
-
                 var Ariel = new User
                 {
                     Zip = 11791,
                     FirstName = "DEX",
                     LastName = "Flow",
                     Age = 28,
-                    Gender = true,
+                    Gender = false,
                     Photo = "Dex.jpg",
                     Deleted = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
 
                 };
-
-                var gump = new Likes { Movie = "Forest Gump" };
-                var nemo = new Likes { Movie = "Finding Nemo" };
-                var avengers = new Likes { Movie = "Avengers" };
-
-
                 dbContext.User.Add(paul);
                 dbContext.User.Add(mike);
                 dbContext.User.Add(sue);
                 dbContext.User.Add(Ariel);
             
-               
-                //dbContext.Likes.Add(gump);
-                //dbContext.Likes.Add(nemo);
-                //dbContext.Likes.Add(avengers);
+                var gump = new Likes { Movie = "Forest Gump" };
+                var nemo = new Likes { Movie = "Finding Nemo" };
+                var avengers = new Likes { Movie = "Avengers" };
                 mike.Likes.Add(nemo);
                 mike.Likes.Add(gump);
                 paul.Likes.Add(nemo);
@@ -118,8 +108,12 @@ namespace BusinessLayer
                 var users = from user in db.User select user;
                 foreach (var user in users)
                 {
-                    Debug.WriteLine(user.Zip);
-                    Debug.WriteLine(user.Likes);
+                    Console.WriteLine(user.FirstName);
+                    Console.WriteLine("-ZIP: "+user.Zip);
+                    foreach (var likes in user.Likes)
+                    {
+                        Console.WriteLine("-MOVIE: "+likes.Movie);
+                    }
                 }
             }
         }
