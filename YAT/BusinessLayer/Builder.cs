@@ -7,9 +7,12 @@ using DataLayer;
 using System.Diagnostics;
 
 namespace BusinessLayer
+ 
 {
+    public enum UserSort { Match, LastLog, LastJoin }
     public class Builder
     {
+
         public void putData()
         {
             using (var dbContext = new YATContext())
@@ -118,25 +121,47 @@ namespace BusinessLayer
             }
         }
 
-        public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, int SearcherID)
+        public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, int SearcherID, UserSort sortBy )
         {
+            string qryStr;
+                string filteredUsers = 
+                    "SELECT u.ID from dbo.Users as u where " +
+                     "u.ID!=" + SearcherID + " and u.Age >=" + minAge + " and u.Age<=" + maxAge +
+                     " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode ;
+                 string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
             using (var dbContext = new YATContext())
             {
-              
-                List<User> users = dbContext.User.SqlQuery("Select * from dbo.Users inner join " +
-                 " (select filteredUsers.ID,count(filteredUsers.ID) as score   from " +
-                "(SELECT u.ID from dbo.Users as u where " +
-                 "u.ID!=" + SearcherID + " and u.Age >=" + minAge + " and u.Age<=" + maxAge + " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode + ")" +
-                  " as filteredUsers " +
-                          "left join" +
-                 "(SELECT dbo.LikesUsers.user_ID, dbo.LikesUsers.Likes_Id from   dbo.LikesUsers where " +
-                        "dbo.LikesUsers.Likes_Id in (SELECT dbo.LikesUsers.Likes_ID from   dbo.LikesUsers where " +
-                                                      " dbo.LikesUsers.User_ID=1)) as movies " +
-                                                            " on filteredUsers.ID = movies.User_Id " +
-                                                                  " group by filteredUsers.ID) as results on results.ID=dbo.Users.ID order by score").ToList();
-      
-                return users;
+                switch (sortBy) // Sort according to criterion
+                {
+                   case UserSort.Match: //sort by most mutual likes
+                        qryStr = "Select * from dbo.Users inner join " +
+                                "(select filteredUsers.ID,count(filteredUsers.ID) as score from " +
+                             " ( " + filteredUsers + ")" +
+                              " as filteredUsers " +
+                                      "left join" +
+                             "(SELECT dbo.LikesUsers.user_ID, dbo.LikesUsers.Likes_Id from   dbo.LikesUsers where " +
+                                    "dbo.LikesUsers.Likes_Id in " +
+                                    "(SELECT dbo.LikesUsers.Likes_ID from   dbo.LikesUsers where " +
+                                                                  " dbo.LikesUsers.User_ID=1)) as movies " +
+                                                                        " on filteredUsers.ID = movies.User_Id " +
+                                                                              "GROUP by filteredUsers.ID) as results on results.ID=dbo.Users.ID order by score";
+                    break;
+                    case UserSort.LastLog:
+                    qryStr = defaultStr + 
+                              " order by LastLoginDate";
+                    break;
+                    case UserSort.LastJoin:
+                    qryStr = defaultStr + 
+                              " order by RegistrationDate";
+                    break;
+                    default:
+                    qryStr = defaultStr; 
+                    break;
+                }
+            
+           List<User> users = dbContext.User.SqlQuery(qryStr).ToList();
+           return users;
             }
         }
              
