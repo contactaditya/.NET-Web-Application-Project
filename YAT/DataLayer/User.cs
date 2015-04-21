@@ -29,6 +29,7 @@ namespace DataLayer
         public bool Gender { get; set; }
         public string Photo { get; set; }
         public bool Deleted { get; set; }
+        public bool InterestedIn { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }
         
