@@ -9,20 +9,23 @@ namespace BusinessLayer
 {
     public class Analytics
     {
-        public void movieRank()
+        public IEnumerable<MovieRank> movieRank()
         {
             using (var db = new YATContext())
             {
-                var rows = from movie in db.Likes orderby movie.Users.Count
-                           select new
+                var rows = from movie in db.Likes
+                                          orderby movie.Users.Count
+                           select new MovieRank
                            {
-                               movie = movie,
+                               movie = movie.Movie.ToString(),
                                rank = movie.Users.Count
                            };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.movie.Movie, row.rank);
+                    Console.WriteLine("{0} {1}", row.movie, row.rank);
                 }
+
+                return rows.ToList();
             }
         }
 
@@ -39,5 +42,11 @@ namespace BusinessLayer
                 }
             }
         }
+    }
+
+    public class MovieRank
+    {
+        public string movie { get; set; }
+        public int rank {get;set;}
     }
 }

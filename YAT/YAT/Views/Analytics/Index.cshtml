@@ -1,0 +1,20 @@
+﻿@model IEnumerable<BusinessLayer.MovieRank>
+
+@{
+    ViewBag.Title = "Analytics";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Charts go here.</p>
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.rank)
+            @Html.DisplayFor(modelItem => item.movie)
+        </td>
+    </tr>
+}

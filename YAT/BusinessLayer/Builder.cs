@@ -17,7 +17,13 @@ namespace BusinessLayer
         {
             using (var dbContext = new YATContext())
             {
-                var paul = new User
+                User paul = dbContext.User.Where(p => p.FirstName.Contains("Paul")).FirstOrDefault();
+                if (paul != null)
+                {
+                    return;
+                }
+
+                paul = new User
                 {
                     Zip = 11791,
                     FirstName = "Paul",
@@ -111,11 +117,11 @@ namespace BusinessLayer
                 var users = from user in db.User select user;
                 foreach (var user in users)
                 {
-                    Console.WriteLine(user.FirstName);
-                    Console.WriteLine("-ZIP: "+user.Zip);
+                    Debug.WriteLine(user.FirstName);
+                    Debug.WriteLine("-ZIP: " + user.Zip);
                     foreach (var likes in user.Likes)
                     {
-                        Console.WriteLine("-MOVIE: "+likes.Movie);
+                        Debug.WriteLine("-MOVIE: " + likes.Movie);
                     }
                 }
             }

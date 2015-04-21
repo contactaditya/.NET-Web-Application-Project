@@ -27,27 +27,16 @@ namespace YATConsole
         static void Main(string[] args)
         {
             Builder b = new Builder();
-            User paul;
-            using (var db = new YATContext())
-            {
-                paul = db.User.Where(p => p.FirstName.Contains("Paul")).FirstOrDefault();
-            }
-            if (paul == null) 
-            {
-                //we don't want to keep populating fake data so our test queries have the same results
-                b.putData();
-            }
-             b.getData();
+            b.putData();
+            b.getData();
             
             Analytics a = new Analytics();
             a.movieRank();
             a.genderCount();
 
-            
             qryTester(UserSort.LastJoin);
             qryTester(UserSort.LastLog);
             qryTester(UserSort.Match);
-
              
             Console.WriteLine("\nDone!");
             Console.ReadKey();
