@@ -7,12 +7,10 @@ using DataLayer;
 using System.Diagnostics;
 
 namespace BusinessLayer
- 
 {
     public enum UserSort { Match, LastLog, LastJoin }
     public class Builder
     {
-
         public void putData()
         {
             using (var dbContext = new YATContext())
@@ -29,7 +27,7 @@ namespace BusinessLayer
                     FirstName = "Paul",
                     LastName = "Sultan",
                     Age = 28,
-                    Gender = false,
+                    Gender = true,
                     Photo = "paul.jpg",
                     Deleted = false,
                     InterestedIn = false,
@@ -42,7 +40,7 @@ namespace BusinessLayer
                     FirstName = "Mike",
                     LastName = "Sultan",
                     Age = 28,
-                    Gender = false,
+                    Gender = true,
                     Photo = "mike.jpg",
                     Deleted = false,
                     InterestedIn = false,
@@ -56,10 +54,10 @@ namespace BusinessLayer
                     FirstName = "Sue",
                     LastName = "Flower",
                     Age = 28,
-                    Gender = true,
+                    Gender = false,
                     Photo = "sue.jpg",
                     Deleted = false,
-                    InterestedIn = false,
+                    InterestedIn = true,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
 
@@ -67,10 +65,10 @@ namespace BusinessLayer
                 var Ariel = new User
                 {
                     Zip = 11791,
-                    FirstName = "DEX",
-                    LastName = "Flow",
+                    FirstName = "Brad",
+                    LastName = "Gabe",
                     Age = 28,
-                    Gender = false,
+                    Gender = true,
                     Photo = "Dex.jpg",
                     Deleted = false,
                     InterestedIn = false,
@@ -174,9 +172,5 @@ namespace BusinessLayer
            return users;
             }
         }
-             
-
     }
-
-    
 }
