@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h2>User Profile</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <form method="post">
+        <fieldset>
+            <legend>This Page Contains The Details Of The User</legend>
+            <div>
+                <label for="FirstName">First Name:</label>
+                <input type="text" name="FirstName" value="" />
+            </div>
+            <div>
+                <label for="LastName">Last Name:</label>
+                <input type="text" name="LastName" value="" />
+            </div>
+            <div>
+                <label for="Age">Age:</label>
+                <input type="text" name="Age" value="" />
+            </div>
+            <div>
+                <label for="Gender">Gender:</label>
+                <input type="text" name="Gender" value="" />
+            </div>
+            <div>
+                <label for="InterestedIn">Interested In:</label>
+                <input type="text" name="InterestedIn" value="" />
+            </div>
+            <div>
+                <label for="RegistrationDate">Registration Date:</label>
+                <input type="text" name="RegistrationDate" value="" />
+            </div>
+            <div>
+                <label>&nbsp;</label>
+                <input type="submit" value="Message" class="submit" />
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
+
