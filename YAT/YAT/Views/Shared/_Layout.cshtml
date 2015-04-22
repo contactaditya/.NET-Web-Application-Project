@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - YAT</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -24,6 +24,7 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("UserProfile", "UserProfile", "UserProfile")</li>
                         <li>@Html.ActionLink("Analytics", "Index", "Analytics")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     }
@@ -35,13 +36,6 @@
 
         </div>
     </div>
-
-
-
-
-
-
-
 
 
     <div class="container body-content">
