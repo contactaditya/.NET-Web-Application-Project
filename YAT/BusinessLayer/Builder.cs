@@ -32,6 +32,7 @@ namespace BusinessLayer
                     Gender = false,
                     Photo = "paul.jpg",
                     Deleted = false,
+                    InterestedIn = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
                 };
@@ -44,6 +45,7 @@ namespace BusinessLayer
                     Gender = false,
                     Photo = "mike.jpg",
                     Deleted = false,
+                    InterestedIn = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
 
@@ -57,6 +59,7 @@ namespace BusinessLayer
                     Gender = true,
                     Photo = "sue.jpg",
                     Deleted = false,
+                    InterestedIn = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
 
@@ -70,6 +73,7 @@ namespace BusinessLayer
                     Gender = false,
                     Photo = "Dex.jpg",
                     Deleted = false,
+                    InterestedIn = false,
                     RegistrationDate = DateTime.Now,
                     LastLoginDate = DateTime.Now,
 

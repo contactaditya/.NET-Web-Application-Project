@@ -78,7 +78,21 @@ namespace YAT.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Required]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public int Age { get; set; }
+        [Required]
+        public bool Gender { get; set; }
+        [Required]
+        public int Zip { get; set; }
+        public string Photo { get; set; }
+        [Required]
+        public bool InterestedIn { get; set; }
     }
 
     public class ResetPasswordViewModel

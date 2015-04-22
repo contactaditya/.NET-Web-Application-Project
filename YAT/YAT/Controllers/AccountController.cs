@@ -167,17 +167,22 @@ namespace YAT.Controllers
 
                     using(var dbContext = new YATContext())
                     {
-                        var YATuser = new User { Zip = 11791, 
-                                    FirstName = "Paul",
-                                    LastName = "Sultan",
-                                    Age=28,
-                                    Gender=false,
-                                    Photo = "paul.jpg",
-                                    Deleted=false,
-                                    RegistrationDate=DateTime.Now,
-                                    LastLoginDate=DateTime.Now,
+                        var YATuser = new User
+                        {
 
-                         };
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Age = model.Age,
+                            Gender = model.Gender,
+                            Photo = model.Photo,
+                            Zip = model.Zip,
+                            InterestedIn = model.InterestedIn,
+                            Deleted = false,
+
+                            RegistrationDate = DateTime.Now,
+                            LastLoginDate = DateTime.Now,
+
+                        };
                         dbContext.User.Add(YATuser);
                         dbContext.SaveChanges();
 
