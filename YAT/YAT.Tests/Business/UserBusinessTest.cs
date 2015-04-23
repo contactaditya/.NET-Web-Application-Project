@@ -9,7 +9,7 @@ using YAT.Controllers;
 using BusinessLayer;
 using DataLayer;
 
-namespace YAT.Tests.Controllers
+namespace YAT.Tests.Business
 {
     [TestClass]
     public class UserBusinessTest

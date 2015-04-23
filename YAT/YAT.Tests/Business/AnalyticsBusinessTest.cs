@@ -8,7 +8,7 @@ using YAT;
 using YAT.Controllers;
 using BusinessLayer;
 
-namespace YAT.Tests.Controllers
+namespace YAT.Tests.Business
 {
     [TestClass]
     public class AnalyticsBusinessTest

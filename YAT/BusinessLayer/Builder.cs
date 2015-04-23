@@ -107,7 +107,25 @@ namespace BusinessLayer
                     Date = DateTime.Now,
                     Read = false
                 };
+                var reply = new Message
+                {
+                    Text = "Hello",
+                    From = sue,
+                    To = mike,
+                    Date = DateTime.Now.AddMinutes(5),
+                    Read = false
+                };
+                var repAgain = new Message
+                {
+                    Text = "wanna go program some tests??!?!!",
+                    From = mike,
+                    To = sue,
+                    Date = DateTime.Now.AddMinutes(8),
+                    Read = false
+                };
                 dbContext.Messages.Add(message);
+                dbContext.Messages.Add(reply);
+                dbContext.Messages.Add(repAgain);
                 dbContext.SaveChanges();
             }
         }

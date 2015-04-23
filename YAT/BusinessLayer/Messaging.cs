@@ -7,23 +7,24 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    class Messaging
+    public class Messaging
     {
         YATContext db = new YATContext();
 
         public IQueryable<String> getConversation(int userID, int otherID)
         {
 
-            IQueryable<String> query = (from message
+            IQueryable<Message> query = ((from message
                          in db.Messages
-                                        where message.ToId == userID && message.FromId == otherID
-                                        select message.Text)
+                         where message.ToId == userID && message.FromId == otherID
+                         select message)
                          .Union
                          (from message in db.Messages
                           where message.FromId == userID && message.ToId == otherID
-                          select message.Text);
-            return query;
-
+                          select message));
+            query = query.OrderBy(o => o.Date);
+            var result = from message in query select message.Text;
+            return result;
         }
 
         public void sendMessage(int toID, int fromID, string textToSend)
@@ -49,6 +50,31 @@ namespace BusinessLayer
                                         where message.ToId == userID
                                         select message;
             return query;
+        }
+
+        //I add userID here since I am not sure how we want to do this, userID can be removed later maybe
+        //But if we just run read every time a user clicks a message then we need it since if it is from them,
+        //read should not be marked true...
+        public void read(int userID, int messageID) 
+        {
+            IQueryable<Message> query = from message 
+                        in db.Messages 
+                        where message.Id == messageID && message.To.Id == userID 
+                        select message;
+            //Should only exist one
+            foreach (Message message in query)
+            {
+                message.Read = true;
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                //Write to console for now...
+                Console.WriteLine(e);
+            }
         }
     }
 }

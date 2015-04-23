@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\MessagingTest.cs" />
     <Compile Include="Business\UserBusinessTest.cs" />
     <Compile Include="Business\AnalyticsBusinessTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
