@@ -9,44 +9,70 @@ namespace BusinessLayer
 {
     public class Analytics
     {
-        public IEnumerable<MovieRank> movieRank()
+        public IEnumerable<StringRow> movieRank()
         {
             using (var db = new YATContext())
             {
                 var rows = from movie in db.Likes
                                           orderby movie.Users.Count
-                           select new MovieRank
+                           select new StringRow
                            {
-                               movie = movie.Movie.ToString(),
-                               rank = movie.Users.Count
+                               name = movie.Movie.ToString(),
+                               value = movie.Users.Count
                            };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.movie, row.rank);
+                    Console.WriteLine("{0} {1}", row.name, row.value);
                 }
 
                 return rows.ToList();
             }
         }
 
-        public void genderCount()
+        public IEnumerable<BoolRow> genderCount()
         {
             using (var db = new YATContext())
             {
                 var rows = from user in db.User
                            group user by user.Gender into tempTable
-                           select new { gender = tempTable.Key, count = tempTable.Count() };
+                           select new BoolRow { name = tempTable.Key, value = tempTable.Count() };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.gender, row.count);
+                    Console.WriteLine("{0} {1}", row.name, row.value);
                 }
+                return rows.ToList();
+            }
+        }
+
+        public IEnumerable<IntRow> ageRank()
+        {
+            using (var db = new YATContext())
+            {
+                var rows = from user in db.User
+                           group user by user.Age into tempTable
+                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                foreach (var row in rows)
+                {
+                    Console.WriteLine("{0} {1}", row.name, row.value);
+                }
+                return rows.ToList();
             }
         }
     }
 
-    public class MovieRank
+    public class StringRow
     {
-        public string movie { get; set; }
-        public int rank {get;set;}
+        public string name { get; set; }
+        public int value {get;set;}
+    }
+    public class IntRow
+    {
+        public int name { get; set; }
+        public int value { get; set; }
+    }
+    public class BoolRow
+    {
+        public bool name {get; set; }
+        public int value { get; set; }
     }
 }
