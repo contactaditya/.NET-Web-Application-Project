@@ -19,7 +19,7 @@ namespace YAT.Tests.Business
         [TestMethod]
         public void Index()
         {
-            IEnumerable<MovieRank> ranks = a.movieRank();
+            IEnumerable<StringRow> ranks = a.movieRank();
             
             // Assert
             Assert.IsNotNull(ranks);

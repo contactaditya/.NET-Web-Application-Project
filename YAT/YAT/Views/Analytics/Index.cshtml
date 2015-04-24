@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BusinessLayer.MovieRank>
+﻿@model IEnumerable<BusinessLayer.StringRow>
 
 @{
     ViewBag.Title = "Analytics";
@@ -13,8 +13,8 @@
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.rank)
-            @Html.DisplayFor(modelItem => item.movie)
+            @Html.DisplayFor(modelItem => item.name)
+            @Html.DisplayFor(modelItem => item.value)
         </td>
     </tr>
 }
