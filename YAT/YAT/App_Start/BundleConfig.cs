@@ -25,6 +25,7 @@ namespace YAT
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/YAT.css",
                       "~/Content/site.css"));
         }
     }
