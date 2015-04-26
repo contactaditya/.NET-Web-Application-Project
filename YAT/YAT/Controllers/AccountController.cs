@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DataLayer;
 using YAT.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace YAT.Controllers
 {
@@ -152,7 +154,7 @@ namespace YAT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };                
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Age = model.Age, Gender = model.Gender, Zip = model.Zip, Photo = model.Photo, InterestedIn = model.InterestedIn, RegistrationDate = DateTime.Now, LastLoginDate = DateTime.Now, Deleted = false };                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -194,15 +196,7 @@ namespace YAT.Controllers
                             Console.WriteLine(myUser);
                         }
 
-
-
-
-
                     }
-
-
-
-
 
                     return RedirectToAction("Index", "Home");
                 }

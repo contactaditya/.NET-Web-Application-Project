@@ -3,6 +3,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YAT.Models
 {
@@ -16,6 +20,23 @@ namespace YAT.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public int Age { get; set; }
+        [Required]
+        public bool Gender { get; set; }
+        [Required]
+        public int Zip { get; set; }
+        public string Photo { get; set; }
+        [Required]
+        public bool InterestedIn { get; set; }
+        public bool Deleted { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public DateTime LastLoginDate { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
