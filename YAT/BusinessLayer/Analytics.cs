@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace BusinessLayer
                            };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.name, row.value);
+                    Console.WriteLine("Movie: {0} {1}", row.name, row.value);
                 }
 
                 return rows.ToList();
@@ -38,7 +39,7 @@ namespace BusinessLayer
                            select new BoolRow { name = tempTable.Key, value = tempTable.Count() };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.name, row.value);
+                    Console.WriteLine("Gender: {0} {1}", row.name, row.value);
                 }
                 return rows.ToList();
             }
@@ -53,11 +54,41 @@ namespace BusinessLayer
                            select new IntRow { name = tempTable.Key, value = tempTable.Count() };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("{0} {1}", row.name, row.value);
+                    Console.WriteLine("Age: {0} {1}", row.name, row.value);
                 }
                 return rows.ToList();
             }
         }
+
+        public IEnumerable<IntRow> registrationMonths()
+        {
+            using (var db = new YATContext())
+            {
+                var rows = from user in db.User
+                           group user by user.RegistrationDate.Month into tempTable
+                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                foreach (var row in rows)
+                {
+                    Console.WriteLine("Month: {0} {1}", DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(row.name), row.value);
+                }
+                return rows.ToList();
+            }
+        }
+        public IEnumerable<IntRow> zipCount()
+        {
+            using (var db = new YATContext())
+            {
+                var rows = from user in db.User
+                           group user by user.Zip into tempTable
+                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                foreach (var row in rows)
+                {
+                    Console.WriteLine("Zip: {0} {1}", row.name, row.value);
+                }
+                return rows.ToList();
+            }
+        }
+
     }
 
     public class StringRow
