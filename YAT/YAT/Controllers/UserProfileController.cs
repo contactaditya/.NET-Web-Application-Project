@@ -20,7 +20,8 @@ namespace YAT.Controllers
         // GET: UserProfile/Welcome
  
         public ActionResult Welcome() 
-        { 
+        {
+            UserProfileController user = new UserProfileController();
             return View(); 
         } 
     } 
