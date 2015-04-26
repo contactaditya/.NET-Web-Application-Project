@@ -29,17 +29,24 @@ namespace YATConsole
             Builder b = new Builder();
             b.putData();
             b.getData();
-            
+
+            Console.WriteLine("ANALYTICS");
             Analytics a = new Analytics();
             a.movieRank();
             a.genderCount();
+            a.ageRank();
+            a.registrationMonths();
+            a.zipCount();
+            Console.WriteLine();
 
+            Console.WriteLine("SORTING");
             qryTester(UserSort.LastJoin);
             qryTester(UserSort.LastLog);
             qryTester(UserSort.Match);
-             
+
             Console.WriteLine("\nDone!");
             Console.ReadKey();
+
         }
 
         

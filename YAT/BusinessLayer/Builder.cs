@@ -31,7 +31,7 @@ namespace BusinessLayer
                     Photo = "paul.jpg",
                     Deleted = false,
                     InterestedIn = false,
-                    RegistrationDate = DateTime.Now,
+                    RegistrationDate = Convert.ToDateTime("01/11/2015"),
                     LastLoginDate = DateTime.Now,
                 };
                 var mike = new User
@@ -44,13 +44,13 @@ namespace BusinessLayer
                     Photo = "mike.jpg",
                     Deleted = false,
                     InterestedIn = false,
-                    RegistrationDate = DateTime.Now,
+                    RegistrationDate = Convert.ToDateTime("01/20/2015"),
                     LastLoginDate = DateTime.Now,
 
                 };
                 var sue = new User
                 {
-                    Zip = 11791,
+                    Zip = 10010,
                     FirstName = "Sue",
                     LastName = "Flower",
                     Age = 28,
@@ -58,21 +58,21 @@ namespace BusinessLayer
                     Photo = "sue.jpg",
                     Deleted = false,
                     InterestedIn = true,
-                    RegistrationDate = DateTime.Now,
+                    RegistrationDate = Convert.ToDateTime("04/30/2015"),
                     LastLoginDate = DateTime.Now,
 
                 };
                 var Ariel = new User
                 {
-                    Zip = 11791,
+                    Zip = 94101,
                     FirstName = "Brad",
                     LastName = "Gabe",
-                    Age = 28,
+                    Age = 30,
                     Gender = true,
                     Photo = "Dex.jpg",
                     Deleted = false,
                     InterestedIn = false,
-                    RegistrationDate = DateTime.Now,
+                    RegistrationDate = Convert.ToDateTime("04/20/2015"),
                     LastLoginDate = DateTime.Now,
 
                 };

@@ -17,13 +17,30 @@ namespace YAT.Tests.Business
         Analytics a = new Analytics();
 
         [TestMethod]
-        public void Index()
+        public void movieRank()
         {
             IEnumerable<StringRow> ranks = a.movieRank();
-            
-            // Assert
             Assert.IsNotNull(ranks);
         }
-
+        public void zipCount()
+        {
+            IEnumerable<IntRow> ranks = a.zipCount();
+            Assert.IsNotNull(ranks);
+        }
+        public void registrationMonths()
+        {
+            IEnumerable<IntRow> ranks = a.registrationMonths();
+            Assert.IsNotNull(ranks);
+        }
+        public void ageRank()
+        {
+            IEnumerable<IntRow> ranks = a.ageRank();
+            Assert.IsNotNull(ranks);
+        }
+        public void genderCount()
+        {
+            IEnumerable<BoolRow> ranks = a.genderCount();
+            Assert.IsNotNull(ranks);
+        }
     }
 }
