@@ -123,6 +123,14 @@ namespace BusinessLayer
                     Date = DateTime.Now.AddMinutes(8),
                     Read = false
                 };
+                var anotherMessage = new Message
+                {
+                    Text = "something awesome",
+                    From = Ariel,
+                    To = sue,
+                    Date = DateTime.Now,
+                    Read = false
+                };
                 dbContext.Messages.Add(message);
                 dbContext.Messages.Add(reply);
                 dbContext.Messages.Add(repAgain);
