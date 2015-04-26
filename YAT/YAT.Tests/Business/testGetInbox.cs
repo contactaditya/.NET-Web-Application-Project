@@ -9,28 +9,27 @@ using YAT.Controllers;
 using BusinessLayer;
 using DataLayer;
 
+
 namespace YAT.Tests.Business
 {
     [TestClass]
-    public class MessagingTest
+    public class TestGetInbox
     {
         Builder b = new Builder();
         YATContext db = new YATContext();
         Messaging msging = new Messaging();
 
+        //What else to test?
         [TestMethod]
-        public void ConversationTest(){
-
+        public void testNormalCase()
+        {
             User mike = db.User.Where(m => m.FirstName.Contains("Mike")).FirstOrDefault();
-            User sue = db.User.Where(s => s.FirstName.Contains("Sue")).FirstOrDefault();
 
-            var mikeSueConvo = msging.getConversation(mike.Id, sue.Id).ToList();
+            var inbox = msging.getInbox(mike.Id);
 
-            Assert.AreEqual(mikeSueConvo[0], "Hi there");
-            Assert.AreEqual(mikeSueConvo[1], "Hello");
-            Assert.AreEqual(mikeSueConvo[2], "wanna go program some tests??!?!!");
-
+            foreach (Message m in inbox){
+                Assert.AreEqual(m.ToId, mike.Id);
+            }
         }
-
     }
 }

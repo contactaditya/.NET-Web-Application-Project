@@ -61,19 +61,11 @@ namespace BusinessLayer
                         in db.Messages 
                         where message.Id == messageID && message.To.Id == userID 
                         select message;
-            //Should only exist one
-            foreach (Message message in query)
+            //only one should exist
+            foreach (Message message in query.ToList())
             {
                 message.Read = true;
-            }
-            try
-            {
                 db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                //Write to console for now...
-                Console.WriteLine(e);
             }
         }
     }
