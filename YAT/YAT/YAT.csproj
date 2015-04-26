@@ -261,6 +261,9 @@
     <None Include="Properties\PublishProfiles\YAT2015.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Icon.png" />
+    <Content Include="Pics\batman.jpg" />
+    <Content Include="Pics\joker.jpg" />
+    <Content Include="Pics\superman.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
