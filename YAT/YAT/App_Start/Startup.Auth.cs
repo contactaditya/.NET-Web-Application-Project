@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Facebook;
 using Owin;
 using YAT.Models;
 
@@ -56,7 +57,7 @@ namespace YAT
 
             app.UseFacebookAuthentication(
                 appId: "670399053089641",
-                appSecret: "●●●●●●●●");
+                appSecret: "646bd7b7ed328098c86db9db8d2b7ddf");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
