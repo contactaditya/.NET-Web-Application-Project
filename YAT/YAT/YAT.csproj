@@ -53,6 +53,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -232,6 +235,14 @@
     <Compile Include="Migrations\201504220441188_updating for some reason.Designer.cs">
       <DependentUpon>201504220441188_updating for some reason.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504262207589_Aditya.cs" />
+    <Compile Include="Migrations\201504262207589_Aditya.Designer.cs">
+      <DependentUpon>201504262207589_Aditya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504262250536_Aditya1.cs" />
+    <Compile Include="Migrations\201504262250536_Aditya1.Designer.cs">
+      <DependentUpon>201504262250536_Aditya1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -354,6 +365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504220441188_updating for some reason.resx">
       <DependentUpon>201504220441188_updating for some reason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504262207589_Aditya.resx">
+      <DependentUpon>201504262207589_Aditya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504262250536_Aditya1.resx">
+      <DependentUpon>201504262250536_Aditya1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

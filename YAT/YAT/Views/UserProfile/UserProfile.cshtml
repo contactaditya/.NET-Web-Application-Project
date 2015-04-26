@@ -3,8 +3,13 @@
 }
 
 @{
-    ViewBag.Title = "UserProfile";
+    ViewBag.Title = "User Profile";
 }
+
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using YAT.Models;
+@using DataLayer;
 
 <h2>User Profile</h2>
 <!DOCTYPE html>
@@ -14,35 +19,41 @@
 </head>
 <body>
     <form method="post">
-            <div class="text-center">
+            <div class="text-center">       
                 <fieldset>
+@{
+    if (Request.IsAuthenticated)
+    {
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+        
                     <legend>  This Page Contains The Details Of The User </legend>
                     <div>
-                        <img src="http://placehold.it/512x384" class="key" id="principal"> <br /> <br/>
+                        <img src="http://placehold.it/512x384"> <br /> <br/>
                     </div>
                     <div>
                         <label for="FirstName">First Name:</label> 
-                        <input type="text" name="FirstName" value="" /> <br /> <br/>
+                        <input type="text" name="FirstName" value="@currentUser.FirstName" /> <br /> <br />
                     </div>
                     <div>
                         <label for="LastName">Last Name:</label> 
-                        <input type="text" name="LastName" value="" /> <br /> <br />
+                        <input type="text" name="LastName" value="@currentUser.LastName" /> <br /> <br />
                     </div>
                     <div>
                         <label for="Age">Age:</label> 
-                        <input type="text" name="Age" value="" /> <br /> <br />
+                        <input type="text" name="Age" value="@currentUser.Age" /> <br /> <br />
                     </div>
                     <div>
                         <label for="Gender">Gender:</label> 
-                        <input type="text" name="Gender" value="" /> <br /> <br />
+                        <input type="text" name="Gender" value="@currentUser.Gender" /> <br /> <br />
                     </div>
                     <div>
                         <label for="InterestedIn">Interested In:</label> 
-                        <input type="text" name="InterestedIn" value="" /> <br /> <br />
+                        <input type="text" name="InterestedIn" value="@currentUser.InterestedIn" /> <br /> <br />
                     </div>
                     <div>
                         <label for="RegistrationDate">Registration Date:</label> 
-                        <input type="text" name="RegistrationDate" value="" /> <br /> <br />
+                        <input type="text" name="RegistrationDate" value="@currentUser.RegistrationDate.ToShortDateString()" /> <br /> <br />
                     </div>
                     <div>
                         <label>&nbsp;</label> 
@@ -54,7 +65,10 @@
                     <div>
                         <h2> Google Maps API </h2>
                     </div>
+    }
+}
                 </fieldset>
+
             </div>
 </form>
 </body>
