@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -314,6 +315,7 @@
     <Content Include="Views\Analytics\Index.cshtml" />
     <Content Include="Views\UserProfile\UserProfile.cshtml" />
     <Content Include="Views\UserProfile\Welcome.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
