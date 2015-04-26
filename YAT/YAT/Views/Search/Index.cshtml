@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DataLayer.User>
+
+@{
+    ViewBag.Title = "Search Page";
+}
+
+<div class="jumbotron">
+    <h1>Search Users</h1>
+    <p>Local time is @DateTime.Now.ToString("hh:mm:ss")</p>
+    <p class="lead">Good luck!</p>
+</div>
+
+
+<div class="searchcontainer">
+    <h1>Users Found: @Model.Count()</h1>
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Index", "UserProfile", FormMethod.Post))
+        {
+            <div class="productbox">
+
+                <h3 class="itemcenter">@item.FirstName</h3>
+
+          <!--      <img class="productpix itemcenter" src="@Url.Content(item.Photo)" /> -->
+
+                <span class="itemcenter">@item.Age</span>
+
+                <div class="itemcenter">
+                    <input name="quantity" type="number" min="1" max="100" value="1" />
+                    @Html.Hidden("Id", @item.Id)
+
+                    <input type="submit" value="Add to Cart" class="btn btn-default" />
+                </div>
+
+            </div>
+        }
+
+    }
+
+</div>

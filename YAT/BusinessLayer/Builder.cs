@@ -158,10 +158,10 @@ namespace BusinessLayer
         public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, int SearcherID, UserSort sortBy )
         {
             string qryStr;
-                string filteredUsers = 
-                    "SELECT u.ID from dbo.Users as u where " +
-                     "u.ID!=" + SearcherID + " and u.Age >=" + minAge + " and u.Age<=" + maxAge +
-                     " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode ;
+            string filteredUsers =
+                "SELECT u.ID from dbo.Users as u where " +
+                 "u.ID!=" + SearcherID + " and u.Age >=" + minAge + " and u.Age<=" + maxAge +
+              " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode;
                  string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
             using (var dbContext = new YATContext())
