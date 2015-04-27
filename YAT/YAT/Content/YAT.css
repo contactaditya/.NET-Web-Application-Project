@@ -44,13 +44,13 @@ searchfooter {
   border-color: #080808;
 }
 
-.navbar-inverse .navbar-brand {
-  color: #999999;
+.navbar-inverse .navbar-brand {   /*first link*/
+  color: #ffffff;
 }
 
 .navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus {
-  color: #ffffff;
+.navbar-inverse .navbar-brand:focus {     /*first link*/
+  color: #FE77A2;
   background-color: transparent;
 }
 
@@ -58,13 +58,13 @@ searchfooter {
   color: #999999;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+.navbar-inverse .navbar-nav > li > a {   /*remaining links*/
+  color: #ffffff;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:hover,   /*remaining links*/
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
+  color: #FE77A2;
   background-color: transparent;
 }
 
@@ -87,8 +87,8 @@ searchfooter {
 }
 
 .navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
-  background-color: #333333;
+.navbar-inverse .navbar-toggle:focus {  /*collapse button*/
+  background-color: #650040;
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
@@ -156,4 +156,10 @@ searchfooter {
 
 .navbar-inverse .navbar-link:hover {
   color: #ffffff;
+}
+
+.center-block {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
