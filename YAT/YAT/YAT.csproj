@@ -252,7 +252,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\couple.jpg" />
+    <Content Include="Content\images\couple.jpg" />
+    <Content Include="Content\images\doves.png" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\heart_icon.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\YAT.css" />
@@ -327,7 +330,9 @@
     <Content Include="Views\UserProfile\Welcome.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
