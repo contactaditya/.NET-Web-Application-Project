@@ -7,11 +7,16 @@
 <div class="jumbotron">
     <h1>Search Users</h1>
     <p>Local time is @DateTime.Now.ToString("hh:mm:ss")</p>
-    <p class="lead">Good luck!</p>
+    <p1>Find </p1>
+    @Html.DropDownList("FindGender", new SelectList(new[] { "Men","Women"}))
+    <p1> looking for </p1>
+    @Html.DropDownList("LookForGender", new SelectList(new[] { "Men", "Women" }))
+    <input type="submit" value="Find!" class="btn btn-default" />
+
 </div>
 
 
-<div class="searchcontainer">
+<div class="searchcontainer footer">
     <h1>Users Found: @Model.Count()</h1>
     @foreach (var item in Model)
     {

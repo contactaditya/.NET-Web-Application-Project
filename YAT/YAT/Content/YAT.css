@@ -1,7 +1,9 @@
 ﻿/*Ariel Changes*/
 .productpix {
-    max-height: 100px;
-    max-width: 100px;
+    /*height: 150px;
+    width: 150px;*/
+    max-height: 200px;
+    max-width: 150px;
 }
 
 .productcontainer {
@@ -17,7 +19,7 @@
     float: left;   
 }
 
-/*
+
 .itemcenter {
     padding: 10px;
     text-align: center;
@@ -25,16 +27,16 @@
     display: block;
     margin: auto;
 }
-
+/*
 .jumbotron {
     max-width: 812px;
 }
-
-footer {
+    */
+searchfooter {
    padding-top: 650px;
    height: 8em;
 }
-*/
+
 
 /*Paul Changes to the navbar*/
 .navbar-inverse {
