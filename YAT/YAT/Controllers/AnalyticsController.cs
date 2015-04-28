@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace YAT.Controllers
 {
@@ -16,8 +17,8 @@ namespace YAT.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "This is the analytics page.";
-            
-            ViewData["movieRank"] = business.movieRank().ToList();
+
+            ViewData["movieRank"] = business.movieRank();;
             ViewData["genderCount"] = business.genderCount();
             ViewData["ageRank"] = business.ageRank();
             ViewData["registrationMonths"] = business.registrationMonths();
