@@ -29,7 +29,6 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-
         public IEnumerable<BoolRow> genderCount()
         {
             using (var db = new YATContext())
@@ -44,7 +43,6 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-
         public IEnumerable<IntRow> ageRank()
         {
             using (var db = new YATContext())
@@ -59,7 +57,6 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-
         public IEnumerable<IntRow> registrationMonths()
         {
             using (var db = new YATContext())

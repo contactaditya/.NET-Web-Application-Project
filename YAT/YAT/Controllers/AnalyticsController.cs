@@ -16,8 +16,14 @@ namespace YAT.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "This is the analytics page.";
+            
+            ViewData["movieRank"] = business.movieRank().ToList();
+            ViewData["genderCount"] = business.genderCount();
+            ViewData["ageRank"] = business.ageRank();
+            ViewData["registrationMonths"] = business.registrationMonths();
+            ViewData["zipCount"] = business.zipCount();
 
-            return View(business.movieRank().ToList());
+            return View();
         }
     }
 }

@@ -1,20 +1,92 @@
-﻿@model IEnumerable<BusinessLayer.StringRow>
-
-@{
+﻿@{
     ViewBag.Title = "Analytics";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Charts go here.</p>
-
-
-@foreach (var item in Model)
-{
+<table>
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-            @Html.DisplayFor(modelItem => item.value)
-        </td>
+        <th colspan="2">Movie Ranks</th>
     </tr>
-}
+    @foreach (var item in ViewData["movieRank"] as IEnumerable<BusinessLayer.StringRow>)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+        </tr>
+    }
+</table>
+<table>
+    <tr>
+        <th colspan="2">Gender Count</th>
+    </tr>
+    @foreach (var item in ViewData["genderCount"] as IEnumerable<BusinessLayer.BoolRow>)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+        </tr>
+    }
+</table>
+<table>
+    <tr>
+        <th colspan="2">Age Count</th>
+    </tr>
+    @foreach (var item in ViewData["ageRank"] as IEnumerable<BusinessLayer.IntRow>)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+        </tr>
+    }
+</table>
+<table>
+    <tr>
+        <th colspan="2">Registration Month Rank</th>
+    </tr>
+    @foreach (var item in ViewData["registrationMonths"] as IEnumerable<BusinessLayer.IntRow>)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+        </tr>
+    }
+</table>
+<table>
+    <tr>
+        <th colspan="2">Zip Rank</th>
+    </tr>
+    @foreach (var item in ViewData["zipCount"] as IEnumerable<BusinessLayer.IntRow>)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+        </tr>
+    }
+</table>
