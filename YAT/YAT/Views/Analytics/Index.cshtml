@@ -1,8 +1,12 @@
 ﻿@{
     ViewBag.Title = "Analytics";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.mRank</h2>
+
+<script>
+    var movieRank = JSON.parse('@Html.Raw(Json.Encode(ViewData["movieRank"]))');
+</script>
 
 <table>
     <tr>
@@ -10,7 +14,6 @@
     </tr>
     @foreach (var item in ViewData["movieRank"] as IEnumerable<BusinessLayer.StringRow>)
     {
-
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.name)
