@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DataLayer.Message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            From
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.From.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.From.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.To.Id)
+        </td>
+        <td>
+            @Html.ActionLink("Read", "Read", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
