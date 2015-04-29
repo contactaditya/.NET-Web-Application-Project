@@ -2,10 +2,13 @@
     ViewBag.Title = "Analytics";
 }
 <h2>@ViewBag.Title</h2>
-<h2>@ViewBag.mRank</h2>
 
 <script>
-    var movieRank = JSON.parse('@Html.Raw(Json.Encode(ViewData["movieRank"]))');
+    var movieRank          = JSON.parse('@Html.Raw(Json.Encode(ViewData["movieRank"]))');
+    var genderCount        = JSON.parse('@Html.Raw(Json.Encode(ViewData["genderCount"]))');
+    var ageRank            = JSON.parse('@Html.Raw(Json.Encode(ViewData["ageRank"]))');
+    var registrationMonths = JSON.parse('@Html.Raw(Json.Encode(ViewData["registrationMonths"]))');
+    var zipCount           = JSON.parse('@Html.Raw(Json.Encode(ViewData["zipCount"]))');
 </script>
 
 <table>
@@ -93,3 +96,17 @@
         </tr>
     }
 </table>
+
+
+@using (Html.BeginForm("FileUpload", "Analytics", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <input type="submit" value="Upload" class="submit" />
+}
+
+@using DataLayer;
+@{
+    var user = (ViewData["user"] as DataLayer.User);
+    <img src=/Pics/@user.Id/@user.Photo />
+}

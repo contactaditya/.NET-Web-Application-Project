@@ -15,7 +15,7 @@ namespace BusinessLayer
             using (var db = new YATContext())
             {
                 var rows = from movie in db.Likes
-                                          orderby movie.Users.Count
+                           orderby movie.Users.Count
                            select new StringRow
                            {
                                name = movie.Movie.ToString(),
@@ -85,7 +85,6 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-
     }
 
     public class StringRow

@@ -28,6 +28,7 @@ namespace YATConsole
         {
             Builder b = new Builder();
             b.putData();
+            b.userGenerator(300);
             b.getData();
 
             Console.WriteLine("ANALYTICS");

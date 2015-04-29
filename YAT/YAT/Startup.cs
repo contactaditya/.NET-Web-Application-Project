@@ -11,6 +11,7 @@ namespace YAT
         {
             Builder builder = new Builder();
             builder.putData();
+            builder.userGenerator(300);
             builder.getData();
             
             ConfigureAuth(app);
