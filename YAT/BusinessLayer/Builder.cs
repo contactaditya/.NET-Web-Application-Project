@@ -240,7 +240,7 @@ namespace BusinessLayer
                     qryStr = defaultStr + 
                               " order by LastLoginDate";
                     break;
-                    case UserSort.LastJoin:
+                    case UserSort.LastJoin:  
                     qryStr = defaultStr + 
                               " order by RegistrationDate";
                     break;

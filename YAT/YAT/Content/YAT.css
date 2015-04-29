@@ -27,11 +27,10 @@
     display: block;
     margin: auto;
 }
-/*
-.jumbotron {
-    max-width: 812px;
+smallBox
+{
+   width: 50px;
 }
-    */
 searchfooter {
    padding-top: 650px;
    height: 8em;
