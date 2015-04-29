@@ -10,6 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace YAT.Controllers
 {
+    [Authorize]
     public class AnalyticsController : Controller
     {
         private Analytics business = new Analytics();
