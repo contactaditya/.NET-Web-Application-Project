@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<DataLayer.Message>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inbox";
 }
-
+<head>
+    <title></title>
+    <link href="@Url.Content("~/Styles/MessagingStyle.css")" rel="stylesheet" type="text/css" />
+</head>
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -20,16 +19,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img id="InboxPic" src=~/Pics/batman.jpg />
             @Html.DisplayFor(modelItem => item.From.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.From.Id)
+            @(item.Text.Substring(0,Math.Min(item.Text.Length, 10))+"...")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.To.Id)
-        </td>
-        <td>
-            @Html.ActionLink("Read", "Read", new { id=item.Id }) |
+            @Html.ActionLink("Read", "Read", new { id=item.Id } ) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
