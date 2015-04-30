@@ -44,6 +44,7 @@ namespace YAT.Controllers
             Message message = db.Messages.Find(id);
             Messaging msging = new Messaging();
             var messages = msging.getConversation(message.To.Id, message.From.Id).ToList();
+            msging.read(message.To.Id, message.Id);
             if (message == null)
             {
                 return HttpNotFound();
