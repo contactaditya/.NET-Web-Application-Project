@@ -11,7 +11,7 @@ namespace BusinessLayer
     {
         YATContext db = new YATContext();
 
-        public IQueryable<String> getConversation(string userID, string otherID)
+        public IQueryable<Message> getConversation(string userID, string otherID)
         {
 
             IQueryable<Message> query = ((from message
@@ -23,7 +23,7 @@ namespace BusinessLayer
                           where message.FromId == userID && message.ToId == otherID
                           select message));
             query = query.OrderBy(o => o.Date);
-            var result = from message in query select message.Text;
+            var result = from message in query select message;
             return result;
         }
 

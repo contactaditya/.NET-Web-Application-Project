@@ -20,7 +20,7 @@ namespace YAT.Controllers
         // GET: Messages
         public ActionResult Index()
         {
-            string user = "sdfkjnsdkjfdskf";
+            string user = "c";
             if (user == null)
             {
                 var messages = db.Messages.Include(m => m.From).Include(m => m.To);
@@ -42,11 +42,13 @@ namespace YAT.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Message message = db.Messages.Find(id);
+            Messaging msging = new Messaging();
+            var messages = msging.getConversation(message.To.Id, message.From.Id).ToList();
             if (message == null)
             {
                 return HttpNotFound();
             }
-            return View(message);
+            return View(messages);
         }
 
 
