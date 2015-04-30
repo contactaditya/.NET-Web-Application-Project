@@ -107,6 +107,6 @@
 
 @using DataLayer;
 @{
-    var user = (ViewData["user"] as DataLayer.User);
+    var user = (Model as DataLayer.User);
     <img src=/Pics/@user.Id/@user.Photo />
 }

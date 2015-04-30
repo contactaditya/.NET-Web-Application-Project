@@ -16,9 +16,9 @@ namespace DataLayer
         [MinLength(1), MaxLength(200)]
         public string Text { get; set; }
         
-        public int FromId { get; set; }
+        public string FromId { get; set; }
         public virtual User From { get; set; }
-        public int ToId { get; set; }
+        public string ToId { get; set; }
         public virtual User To { get; set; }
     
         [Required]

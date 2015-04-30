@@ -9,11 +9,13 @@ namespace BusinessLayer
 {
     public class Users
     {
-        YATContext db = new YATContext();
-
-        public IList<Likes> getUserLikes(int userID)
+        public IList<Likes> getUserLikes(string userID)
         {
-            var likes = db.User.Where(p => p.Id.Equals(userID)).First().Likes.ToList();
+            IList<Likes> likes = null;
+            using (var dbContext = new YATContext())
+            {
+                likes = dbContext.User.Where(p => p.Id.Equals(userID)).First().Likes.ToList();
+            }
             return likes;
         }
 

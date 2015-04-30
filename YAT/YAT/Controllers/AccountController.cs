@@ -154,7 +154,7 @@ namespace YAT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Age = model.Age, Gender = model.Gender, Zip = model.Zip, Photo = model.Photo, InterestedIn = model.InterestedIn, RegistrationDate = DateTime.Now, LastLoginDate = DateTime.Now, Deleted = false };                
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,12 +166,11 @@ namespace YAT.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-
                     using(var dbContext = new YATContext())
                     {
                         var YATuser = new User
                         {
-
+                            Id=user.Id,
                             FirstName = model.FirstName,
                             LastName = model.LastName,
                             Age = model.Age,
@@ -183,19 +182,9 @@ namespace YAT.Controllers
 
                             RegistrationDate = DateTime.Now,
                             LastLoginDate = DateTime.Now,
-
                         };
                         dbContext.User.Add(YATuser);
                         dbContext.SaveChanges();
-
-
-                        var query = from u1 in dbContext.User
-                                    orderby u1.Id
-                                    select u1;
-                        foreach(var myUser in query){
-                            Console.WriteLine(myUser);
-                        }
-
                     }
 
                     return RedirectToAction("Index", "Home");

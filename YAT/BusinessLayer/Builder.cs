@@ -23,6 +23,7 @@ namespace BusinessLayer
 
                 paul = new User
                 {
+                    Id = "a",
                     Zip = 11791,
                     FirstName = "Paul",
                     LastName = "Sultan",
@@ -36,6 +37,7 @@ namespace BusinessLayer
                 };
                 var mike = new User
                 {
+                    Id="b",
                     Zip = 11791,
                     FirstName = "Mike",
                     LastName = "Sultan",
@@ -50,6 +52,7 @@ namespace BusinessLayer
                 };
                 var sue = new User
                 {
+                    Id = "c",
                     Zip = 10010,
                     FirstName = "Sue",
                     LastName = "Flower",
@@ -64,6 +67,7 @@ namespace BusinessLayer
                 };
                 var Ariel = new User
                 {
+                    Id = "d",
                     Zip = 94101,
                     FirstName = "Brad",
                     LastName = "Gabe",

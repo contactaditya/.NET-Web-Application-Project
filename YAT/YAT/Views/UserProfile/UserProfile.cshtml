@@ -24,12 +24,10 @@
 @{
     if (Request.IsAuthenticated)
     {
-        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-        var currentUser = manager.FindById(User.Identity.GetUserId());
-        
+        var currentUser = (Model as DataLayer.User);
                     <legend>  This Page Contains The Details Of The User </legend>
                     <div>
-                        <img src="http://placehold.it/512x384"> <br /> <br/>
+                        <img src="/Pics/@currentUser.Id/@currentUser.Photo"> <br /> <br/>
                     </div>
                     <div>
                         <label for="FirstName">First Name:</label> 

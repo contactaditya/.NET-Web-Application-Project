@@ -11,7 +11,7 @@ namespace BusinessLayer
     {
         YATContext db = new YATContext();
 
-        public IQueryable<String> getConversation(int userID, int otherID)
+        public IQueryable<String> getConversation(string userID, string otherID)
         {
 
             IQueryable<Message> query = ((from message
@@ -27,7 +27,7 @@ namespace BusinessLayer
             return result;
         }
 
-        public void sendMessage(int toID, int fromID, string textToSend)
+        public void sendMessage(string toID, string fromID, string textToSend)
         {
 
             var message = new Message
@@ -43,7 +43,7 @@ namespace BusinessLayer
             db.SaveChanges();
         }
 
-        public IQueryable<Message> getInbox(int userID)
+        public IQueryable<Message> getInbox(string userID)
         {
             IQueryable<Message> query = from message
                                         in db.Messages
@@ -55,7 +55,7 @@ namespace BusinessLayer
         //I add userID here since I am not sure how we want to do this, userID can be removed later maybe
         //But if we just run read every time a user clicks a message then we need it since if it is from them,
         //read should not be marked true...
-        public void read(int userID, int messageID) 
+        public void read(string userID, int messageID) 
         {
             IQueryable<Message> query = from message 
                         in db.Messages 

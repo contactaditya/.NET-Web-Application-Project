@@ -20,16 +20,16 @@ namespace YAT.Controllers
         // GET: Messages
         public ActionResult Index()
         {
-            var user = 1;
+            string user = "sdfkjnsdkjfdskf";
             if (user == null)
             {
-            var messages = db.Messages.Include(m => m.From).Include(m => m.To);
-            return View(messages.ToList());
+                var messages = db.Messages.Include(m => m.From).Include(m => m.To);
+                return View(messages.ToList());
             }
             else
             {
                 Messaging msg = new Messaging();
-                var messages = msg.getInbox(Convert.ToInt32(user));
+                var messages = msg.getInbox(user);
                 return View(messages.ToList());
             }
         }
