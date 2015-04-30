@@ -11,6 +11,14 @@ namespace BusinessLayer
     public enum UserSort { Match, LastLog, LastJoin }
     public class Builder
     {
+    public User getCurrentUser(string userID)
+        {
+            using (var dbContext = new YATContext())
+            {
+                return dbContext.User.Where(p => p.Id.Equals(userID)).FirstOrDefault(); 
+            }
+
+        }
         public void putData()
         {
             using (var dbContext = new YATContext())
@@ -214,12 +222,12 @@ namespace BusinessLayer
             }
         }
 
-        public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, int SearcherID, UserSort sortBy )
+        public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, string SearcherID, UserSort sortBy )
         {
             string qryStr;
             string filteredUsers =
                 "SELECT u.ID from dbo.Users as u where " +
-                 "u.ID!=" + SearcherID + " and u.Age >=" + minAge + " and u.Age<=" + maxAge +
+                 "u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
               " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode;
                  string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
@@ -236,7 +244,7 @@ namespace BusinessLayer
                              "(SELECT dbo.LikesUsers.user_ID, dbo.LikesUsers.Likes_Id from   dbo.LikesUsers where " +
                                     "dbo.LikesUsers.Likes_Id in " +
                                     "(SELECT dbo.LikesUsers.Likes_ID from   dbo.LikesUsers where " +
-                                                                  " dbo.LikesUsers.User_ID=1)) as movies " +
+                                                                  " dbo.LikesUsers.User_ID='" + SearcherID  + "')) as movies " +
                                                                         " on filteredUsers.ID = movies.User_Id " +
                                                                               "GROUP by filteredUsers.ID) as results on results.ID=dbo.Users.ID order by score";
                     break;

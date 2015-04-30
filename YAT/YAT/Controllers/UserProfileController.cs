@@ -7,21 +7,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YAT.Models;
-
+using BusinessLayer;
 namespace YAT.Controllers
 {
     public class UserProfileController : Controller
     { 
-        public ActionResult UserProfile() 
+        public ActionResult UserProfile(string userID = "")
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            Builder b = new Builder();
 
-            User YATUser;
-            using (var dbContext = new YATContext())
-            {
-                YATUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
-            }
+         //   var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+           // var currentUser = manager.FindById(User.Identity.GetUserId());
+            if (userID=="") userID=User.Identity.GetUserId();
+            User YATUser = b.getCurrentUser(userID);
+            //using (var dbContext = new YATContext())
+            //{
+            //    YATUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            //}
 
             return View(YATUser); 
         } 
