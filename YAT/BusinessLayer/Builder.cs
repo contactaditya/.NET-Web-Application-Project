@@ -32,7 +32,7 @@ namespace BusinessLayer
                 paul = new User
                 {
                     Id = "a",
-                    Zip = 11791,
+                    Address = "11791",
                     FirstName = "Paul",
                     LastName = "Sultan",
                     Age = 28,
@@ -46,7 +46,7 @@ namespace BusinessLayer
                 var mike = new User
                 {
                     Id="b",
-                    Zip = 11791,
+                    Address = "11791",
                     FirstName = "Mike",
                     LastName = "Sultan",
                     Age = 28,
@@ -61,7 +61,7 @@ namespace BusinessLayer
                 var sue = new User
                 {
                     Id = "c",
-                    Zip = 10010,
+                    Address = "10010",
                     FirstName = "Sue",
                     LastName = "Flower",
                     Age = 28,
@@ -76,7 +76,7 @@ namespace BusinessLayer
                 var Ariel = new User
                 {
                     Id = "d",
-                    Zip = 94101,
+                    Address = "94101",
                     FirstName = "Brad",
                     LastName = "Gabe",
                     Age = 30,
@@ -157,7 +157,7 @@ namespace BusinessLayer
                 foreach (var user in users)
                 {
                     Debug.WriteLine(user.FirstName);
-                    Debug.WriteLine("-ZIP: " + user.Zip);
+                    Debug.WriteLine("-Address: " + user.Address);
                     foreach (var likes in user.Likes)
                     {
                         Debug.WriteLine("-MOVIE: " + likes.Movie);
@@ -180,7 +180,7 @@ namespace BusinessLayer
                 }
 
                 List<String> names = new List<string>{"Jacob", "Michael", "Joshua", "Matthew", "Andrew", "Ethan", "Joseph", "Daniel", "Christopher", "Anthony", "William", "Nicholas", "Ryan", "David", "Tyler", "Alexander", "John", "James", "Dylan", "Zachary", "Brandon", "Jonathan", "Samuel", "Benjamin", "Christian", "Justin", "Nathan", "Logan", "Gabriel", "Jose", "Noah", "Kevin", "Austin", "Caleb", "Robert", "Thomas", "Elijah", "Jordan", "Aidan", "Cameron", "Hunter", "Jason", "Connor", "Evan", "Jack", "Luke", "Angel", "Isaac", "Isaiah", "Aaron", "Gavin", "Jackson", "Kyle", "Mason", "Juan", "Eric", "Charles", "Adam", "Brian"};
-                List<int> zips = new List<int> {94104, 10022, 20005, 20036, 20001, 20006, 10019, 60611, 60614, 10021, 11733, 10024, 10023, 67201, 10075, 89109, 10065, 94111, 77024, 22101, 20007, 90067, 10128, 33480, 82922, 60045, 10106, 20004, 20008, 15222, 75205, 94301, 10028, 75219, 10017, 76102, 10011, 60093, 20003, 90210, 30327, 20815, 20854, 20910, 90049};
+                List<int> address = new List<int> {94104, 10022, 20005, 20036, 20001, 20006, 10019, 60611, 60614, 10021, 11733, 10024, 10023, 67201, 10075, 89109, 10065, 94111, 77024, 22101, 20007, 90067, 10128, 33480, 82922, 60045, 10106, 20004, 20008, 15222, 75205, 94301, 10028, 75219, 10017, 76102, 10011, 60093, 20003, 90210, 30327, 20815, 20854, 20910, 90049};
                 List<String> movies = new List<string> { "The Shawshank Redemption", "The Godfather", "The Godfather: Part II", "The Dark Knight", "Pulp Fiction", "Schindler's List", "12 Angry Men", "The Good, the Bad and the Ugly", "The Lord of the Rings: The Return of the King", "Fight Club", "The Lord of the Rings: The Fellowship of the Ring", "Star Wars: Episode V - The Empire Strikes Back", "Inception", "One Flew Over the Cuckoo's Nest", "The Lord of the Rings: The Two Towers", "Goodfellas", "The Matrix", "Star Wars: Episode IV - A New Hope", "Seven Samurai", "City of God", "Se7en", "The Usual Suspects", "The Silence of the Lambs", "Interstellar", "It's a Wonderful Life", "Léon: The Professional", "Life Is Beautiful", "Once Upon a Time in the West", "Casablanca", "American History X", "Saving Private Ryan", "Raiders of the Lost Ark", "Spirited Away", "City Lights", "Psycho", "Rear Window"};
                 foreach(var eachMovie in movies){
                     dbContext.Likes.Add(new Likes { Movie = eachMovie });
@@ -190,7 +190,7 @@ namespace BusinessLayer
                 {
                     Random rnd = new Random();
                     
-                    int zip = zips[rnd.Next(zips.Count)];
+                    int zip = address[rnd.Next(address.Count)];
                     string firstName = names[rnd.Next(names.Count)];
                     string lastName = names[rnd.Next(names.Count)];
                     int age = rnd.Next(18, 100);
@@ -200,7 +200,7 @@ namespace BusinessLayer
 
                     User u = new User
                     {
-                        Zip = zip,
+                        Address = Convert.ToString(zip),
                         FirstName = firstName,
                         LastName = lastName,
                         Age = age,
@@ -222,13 +222,13 @@ namespace BusinessLayer
             }
         }
 
-        public List<User> queryUsers(int minAge, int maxAge, bool gender, int zipcode, string SearcherID, UserSort sortBy )
+        public List<User> queryUsers(int minAge, int maxAge, bool gender, string address, string SearcherID, UserSort sortBy )
         {
             string qryStr;
             string filteredUsers =
                 "SELECT u.ID from dbo.Users as u where " +
                  "u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
-              " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Zip = " + zipcode;
+              " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Address = " + address;
                  string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
             using (var dbContext = new YATContext())

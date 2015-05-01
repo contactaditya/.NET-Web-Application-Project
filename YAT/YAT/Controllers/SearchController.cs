@@ -19,23 +19,23 @@ namespace YAT.Controllers
         {
             Builder b = new Builder();
             User currentUser = b.getCurrentUser(User.Identity.GetUserId());
-            int zipcode;
+            string address;
             if (currentUser == null)
-                zipcode = 11791; 
+                address = "11791"; 
             else
-                zipcode = currentUser.Zip;
+                address = currentUser.Address;
 
         
             //Test searching users
-            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, zipcode: zipcode, SearcherID: User.Identity.GetUserId(), sortBy: 0);
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
             ViewBag.minAge =20;
             ViewBag.maxAge = 35;
-            ViewBag.ZipCode = zipcode;
+            ViewBag.address = address;
             return View(users);
         }
 
         [HttpPost]
-        public ActionResult Index(int minAge,int maxAge, string FindGender,string   LookForGender, string sortVal, int zipcode )
+        public ActionResult Index(int minAge,int maxAge, string FindGender,string   LookForGender, string sortVal, string address)
         {
             Builder b = new Builder();
             UserSort sortBy;
@@ -51,10 +51,10 @@ namespace YAT.Controllers
                  break;  
             }
             //Test searching users
-            List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender ==  "Women", zipcode:zipcode  , SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
+            List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender ==  "Women", address:address  , SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
             ViewBag.minAge = minAge;
             ViewBag.maxAge = maxAge;
-            ViewBag.ZipCode = zipcode;
+            ViewBag.address = address;
             return View(users);
         }
     }

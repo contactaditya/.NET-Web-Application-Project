@@ -17,9 +17,9 @@ namespace DataLayer
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
-       
-        public int Zip { get; set; }
+        public string Address { get; set; }
         [MinLength(1), MaxLength(30)]
         public string FirstName { get; set; }
         [MinLength(1), MaxLength(30)]

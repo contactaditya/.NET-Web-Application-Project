@@ -22,9 +22,9 @@ namespace YAT.Tests.Business
             IEnumerable<StringRow> ranks = a.movieRank();
             Assert.IsNotNull(ranks);
         }
-        public void zipCount()
+        public void Address()
         {
-            IEnumerable<IntRow> ranks = a.zipCount();
+            IEnumerable<StringRow> ranks = a.address();
             Assert.IsNotNull(ranks);
         }
         public void registrationMonths()

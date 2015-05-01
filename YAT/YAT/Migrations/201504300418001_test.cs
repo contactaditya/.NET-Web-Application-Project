@@ -11,7 +11,7 @@ namespace YAT.Migrations
             DropColumn("dbo.AspNetUsers", "LastName");
             DropColumn("dbo.AspNetUsers", "Age");
             DropColumn("dbo.AspNetUsers", "Gender");
-            DropColumn("dbo.AspNetUsers", "Zip");
+            DropColumn("dbo.AspNetUsers", "Address");
             DropColumn("dbo.AspNetUsers", "Photo");
             DropColumn("dbo.AspNetUsers", "InterestedIn");
             DropColumn("dbo.AspNetUsers", "Deleted");
@@ -26,7 +26,7 @@ namespace YAT.Migrations
             AddColumn("dbo.AspNetUsers", "Deleted", c => c.Boolean(nullable: false));
             AddColumn("dbo.AspNetUsers", "InterestedIn", c => c.Boolean(nullable: false));
             AddColumn("dbo.AspNetUsers", "Photo", c => c.String());
-            AddColumn("dbo.AspNetUsers", "Zip", c => c.Int(nullable: false));
+            AddColumn("dbo.AspNetUsers", "Address", c => c.String(nullable: false));
             AddColumn("dbo.AspNetUsers", "Gender", c => c.Boolean(nullable: false));
             AddColumn("dbo.AspNetUsers", "Age", c => c.Int(nullable: false));
             AddColumn("dbo.AspNetUsers", "LastName", c => c.String(nullable: false));

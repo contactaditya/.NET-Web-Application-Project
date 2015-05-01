@@ -89,7 +89,7 @@ namespace YAT.Models
         [Required]
         public bool Gender { get; set; }
         [Required]
-        public int Zip { get; set; }
+        public string Address { get; set; }
         public string Photo { get; set; }
         [Required]
         public bool InterestedIn { get; set; }

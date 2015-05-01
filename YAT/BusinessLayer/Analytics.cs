@@ -71,16 +71,16 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-        public IEnumerable<IntRow> zipCount()
+        public IEnumerable<StringRow> AddressCount()
         {
             using (var db = new YATContext())
             {
                 var rows = from user in db.User
-                           group user by user.Zip into tempTable
-                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                           group user by user.Address into tempTable
+                           select new StringRow { name = tempTable.Key, value = tempTable.Count() };
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("Zip: {0} {1}", row.name, row.value);
+                    Console.WriteLine("Address: {0} {1}", row.name, row.value);
                 }
                 return rows.ToList();
             }

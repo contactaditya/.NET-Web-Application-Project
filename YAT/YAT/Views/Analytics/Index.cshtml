@@ -8,7 +8,7 @@
     var genderCount        = JSON.parse('@Html.Raw(Json.Encode(ViewData["genderCount"]))');
     var ageRank            = JSON.parse('@Html.Raw(Json.Encode(ViewData["ageRank"]))');
     var registrationMonths = JSON.parse('@Html.Raw(Json.Encode(ViewData["registrationMonths"]))');
-    var zipCount           = JSON.parse('@Html.Raw(Json.Encode(ViewData["zipCount"]))');
+    var address          = JSON.parse('@Html.Raw(Json.Encode(ViewData["address"]))');
 </script>
 
 <table>
@@ -81,9 +81,9 @@
 </table>
 <table>
     <tr>
-        <th colspan="2">Zip Rank</th>
+        <th colspan="2">Address Rank</th>
     </tr>
-    @foreach (var item in ViewData["zipCount"] as IEnumerable<BusinessLayer.IntRow>)
+    @foreach (var item in ViewData["address"] as IEnumerable<BusinessLayer.IntRow>)
     {
 
         <tr>

@@ -41,7 +41,7 @@
 
     function codeAddress()
     {
-        var address = document.getElementById('zip').value;
+        var address = document.getElementById('address').value;
         geocoder.geocode({ 'address': address }, function (results, status)
         {
             if (status == google.maps.GeocoderStatus.OK)
@@ -111,7 +111,7 @@
                         </div>
                         <div>
                         <h2> Like Section </h2> <br /> <br />
-                         <input id="zip" type="text" value="@currentUser.Zip" readonly>
+                         <input id="address" type="text" value="@currentUser.Address" readonly>
                          <input type="button" value="Get Location On Google Map" onclick="codeAddress()"> <br /> <br />
                         </div>
 

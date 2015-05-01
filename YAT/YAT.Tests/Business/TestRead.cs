@@ -23,7 +23,7 @@ namespace YAT.Tests.Business
         {
             var bob = new User
             {
-                Zip = 11791,
+                Address = "11791",
                 FirstName = "Bob",
                 LastName = "ForApples",
                 Age = 28,
@@ -37,7 +37,7 @@ namespace YAT.Tests.Business
             };
             var mark = new User
             {
-                Zip = 11791,
+                Address = "11791",
                 FirstName = "Mark",
                 LastName = "man",
                 Age = 28,
@@ -74,7 +74,7 @@ namespace YAT.Tests.Business
         {
             var bob = new User
             {
-                Zip = 11791,
+                Address = "11791",
                 FirstName = "Bob",
                 LastName = "ForApples",
                 Age = 28,
@@ -88,7 +88,7 @@ namespace YAT.Tests.Business
             };
             var mark = new User
             {
-                Zip = 11791,
+                Address = "11791",
                 FirstName = "Mark",
                 LastName = "man",
                 Age = 28,

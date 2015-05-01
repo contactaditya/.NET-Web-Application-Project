@@ -44,7 +44,7 @@ namespace YAT.Tests.Business
             Builder b = new Builder();
 
             //Test searching users
-            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: false, zipcode: 11791, SearcherID: 1, sortBy: sortby);
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: false, address: "11791", SearcherID: "1", sortBy: sortby);
             return users;
 
         }

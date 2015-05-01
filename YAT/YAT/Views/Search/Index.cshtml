@@ -20,8 +20,8 @@
     <p1> Maximum Age:</p1>
     <input name="maxAge" type="number" min="18" max="100" value=@ViewBag.maxAge />
   
-    <p1>Zipcode:</p1>
-    <input name="zipcode" type="number" min="0" max="99999" value=@ViewBag.zipcode />
+    <p1>Address:</p1>
+    <input name="address" type="number" min="0" max="99999" value=@ViewBag.address />
     <p1> Sort by:</p1>
     @Html.DropDownList("sortby", new SelectList(new[] { "Best Match", "Activity Date","Newest" }))
     <input type="submit" value="Find!" class="btn btn-default" />

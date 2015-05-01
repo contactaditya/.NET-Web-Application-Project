@@ -27,7 +27,7 @@ namespace YAT.Controllers
             ViewData["genderCount"]        = business.genderCount();
             ViewData["ageRank"]            = business.ageRank();
             ViewData["registrationMonths"] = business.registrationMonths();
-            ViewData["zipCount"]           = business.zipCount();
+            ViewData["address"]            = business.AddressCount();
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
