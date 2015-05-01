@@ -20,7 +20,10 @@
     <tr>
         <td>
             <img id="InboxPic" src=~/Pics/batman.jpg />
-            @Html.DisplayFor(modelItem => item.From.FirstName)
+            @{
+                
+                @Html.DisplayFor(modelItem => item.From.FirstName)
+            }
         </td>
         <td>
             @(item.Text.Substring(0,Math.Min(item.Text.Length, 10))+"...")

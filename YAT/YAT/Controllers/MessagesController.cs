@@ -29,8 +29,21 @@ namespace YAT.Controllers
             else
             {
                 Messaging msg = new Messaging();
-                var messages = msg.getInbox(user);
-                return View(messages.ToList());
+                var messages = msg.getInbox(user).ToList();
+                messages.Reverse();
+                List<String> noDupes = new List<String>();
+                List<Message> result = new List<Message>();
+                foreach (Message message in messages){
+
+                    if (noDupes.Contains(message.From.Id))
+                    {
+                        continue;
+                    }
+                    noDupes.Add(message.From.Id);
+                    result.Add(message);
+                }
+
+                return View(result.ToList());
             }
         }
 
@@ -54,7 +67,7 @@ namespace YAT.Controllers
 
 
         // GET: Messages/Create
-        public ActionResult Create()
+        public ActionResult Send()
         {
             ViewBag.FromId = new SelectList(db.User, "Id", "FirstName");
             ViewBag.ToId = new SelectList(db.User, "Id", "FirstName");
@@ -139,6 +152,16 @@ namespace YAT.Controllers
             db.Messages.Remove(message);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Read(string text)
+        {
+            User usr = db.User.Find("b");
+            User usr2 = db.User.Find("c");
+            Messaging msging = new Messaging();
+            msging.sendMessage(usr.Id, usr2.Id, text);
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 
         protected override void Dispose(bool disposing)

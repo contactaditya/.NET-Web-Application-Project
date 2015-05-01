@@ -337,7 +337,7 @@
     <Content Include="Views\Analytics\Index.cshtml" />
     <Content Include="Views\UserProfile\UserProfile.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Send.cshtml" />
     <Content Include="Views\Messages\Delete.cshtml" />
     <Content Include="Views\Messages\Read.cshtml" />
     <Content Include="Views\Messages\Edit.cshtml" />
