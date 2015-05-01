@@ -37,7 +37,7 @@ namespace YATConsole
             a.genderCount();
             a.ageRank();
             a.registrationMonths();
-            a.AddressCount();
+            a.zipCount();
             Console.WriteLine();
 
             Console.WriteLine("SORTING");

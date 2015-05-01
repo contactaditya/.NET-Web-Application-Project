@@ -20,7 +20,9 @@ namespace BusinessLayer
                            {
                                name = movie.Movie.ToString(),
                                value = movie.Users.Count
-                           };
+                           } into selection
+                           orderby selection.value descending
+                           select selection;
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Movie: {0} {1}", row.name, row.value);
@@ -35,7 +37,10 @@ namespace BusinessLayer
             {
                 var rows = from user in db.User
                            group user by user.Gender into tempTable
-                           select new BoolRow { name = tempTable.Key, value = tempTable.Count() };
+                           select new BoolRow { name = tempTable.Key, value = tempTable.Count() } 
+                           into selection
+                           orderby selection.value descending
+                           select selection;
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Gender: {0} {1}", row.name, row.value);
@@ -49,7 +54,10 @@ namespace BusinessLayer
             {
                 var rows = from user in db.User
                            group user by user.Age into tempTable
-                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                           select new IntRow { name = tempTable.Key, value = tempTable.Count() } 
+                           into selection
+                           orderby selection.value descending
+                           select selection;
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Age: {0} {1}", row.name, row.value);
@@ -63,7 +71,10 @@ namespace BusinessLayer
             {
                 var rows = from user in db.User
                            group user by user.RegistrationDate.Month into tempTable
-                           select new IntRow { name = tempTable.Key, value = tempTable.Count() };
+                           select new IntRow { name = tempTable.Key, value = tempTable.Count() } 
+                           into selection
+                           orderby selection.value descending
+                           select selection;
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Month: {0} {1}", DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(row.name), row.value);
@@ -71,16 +82,19 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-        public IEnumerable<StringRow> AddressCount()
+        public IEnumerable<StringRow> zipCount()
         {
             using (var db = new YATContext())
             {
                 var rows = from user in db.User
                            group user by user.Address into tempTable
-                           select new StringRow { name = tempTable.Key, value = tempTable.Count() };
+                           select new StringRow { name = tempTable.Key, value = tempTable.Count() } 
+                           into selection
+                           orderby selection.value descending
+                           select selection;
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("Address: {0} {1}", row.name, row.value);
+                    Console.WriteLine("Zip: {0} {1}", row.name, row.value);
                 }
                 return rows.ToList();
             }

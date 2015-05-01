@@ -13,10 +13,10 @@ namespace YAT.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void AnalyticsIndex()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            AnalyticsController controller = new AnalyticsController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -35,7 +35,7 @@ namespace YAT.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Yet Another Tinder", result.ViewBag.Message);
         }
 
         [TestMethod]

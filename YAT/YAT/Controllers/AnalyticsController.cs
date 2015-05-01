@@ -13,7 +13,7 @@ using YAT.Models;
 
 namespace YAT.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AnalyticsController : Controller
     {
         private Analytics business = new Analytics();
@@ -27,7 +27,7 @@ namespace YAT.Controllers
             ViewData["genderCount"]        = business.genderCount();
             ViewData["ageRank"]            = business.ageRank();
             ViewData["registrationMonths"] = business.registrationMonths();
-            ViewData["address"]            = business.AddressCount();
+            ViewData["zipCount"]           = business.zipCount();
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
