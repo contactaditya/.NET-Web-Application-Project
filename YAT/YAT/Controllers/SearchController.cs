@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YAT.Controllers
 {
+     [Authorize]
     public class SearchController : Controller
     {
         // GET: Search
