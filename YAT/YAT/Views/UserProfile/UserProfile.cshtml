@@ -16,59 +16,114 @@
 <html>
 <head>
     <title>User Profile</title>
+    <style type="text/css">
+        #map-canvas {
+            width: 500px;
+            height: 400px;
+            margin: 0 auto 0 auto;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript">
+        var map;
+        var geocoder;
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 0,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        }
+
+    function codeAddress()
+    {
+        var address = document.getElementById('zip').value;
+        geocoder.geocode({ 'address': address }, function (results, status)
+        {
+            if (status == google.maps.GeocoderStatus.OK)
+            {
+                var mapOptions = {
+                    zoom: 15,
+                    center: results[0].geometry.location,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker
+                ({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            }
+            else
+            {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
 </head>
 <body>
     <form method="post">
-            <div class="text-center">       
-                <fieldset>
-@{
-    if (Request.IsAuthenticated)
-    {
-        var currentUser = (Model as DataLayer.User);
-                    <legend>  This Page Contains The Details Of The User </legend>
-                    <div>
-                        <img src="/Pics/@currentUser.Id/@currentUser.Photo"> <br /> <br/>
-                    </div>
-                    <div>
-                        <label for="FirstName">First Name:</label> 
-                        <input type="text" name="FirstName" value="@currentUser.FirstName" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label for="LastName">Last Name:</label> 
-                        <input type="text" name="LastName" value="@currentUser.LastName" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label for="Age">Age:</label> 
-                        <input type="text" name="Age" value="@currentUser.Age" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label for="Gender">Gender:</label> 
-                        <input type="text" name="Gender" value="@currentUser.Gender" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label for="InterestedIn">Interested In:</label> 
-                        <input type="text" name="InterestedIn" value="@currentUser.InterestedIn" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label for="RegistrationDate">Registration Date:</label> 
-                        <input type="text" name="RegistrationDate" value="@currentUser.RegistrationDate.ToShortDateString()" /> <br /> <br />
-                    </div>
-                    <div>
-                        <label>&nbsp;</label> 
-                        <input type="submit" value="Message" class="submit" /> <br /> <br />
-                    </div>
-                    <div>
-                        <h2> Like Section </h2>
-                    </div>
-                    <div>
-                        <h2> Google Maps API </h2>
-                    </div>
-    }
-}
-                </fieldset>
+        <div class="text-center">
+            <fieldset>
+                @{
+                    if (Request.IsAuthenticated)
+                    {
+                        var currentUser = (Model as DataLayer.User);
+                        <legend>  This Page Contains The Details Of The User </legend>
+                        <div>
+                            <img src="/Pics/@currentUser.Id/@currentUser.Photo"> <br /> <br />
+                        </div>
+                         <div>
+                        <label for="FirstName">First Name:</label>
+                         @currentUser.FirstName <br /> <br />
+                        </div>
+                         <div>
+                         <label for="LastName">Last Name:</label>
+                          @currentUser.LastName <br /> <br />
+                            </div>
+                            <div>
+                             <label for="Age">Age:</label>
+                             @currentUser.Age <br /> <br />
+                        </div>
+                        <div>
+                         <label for="Gender">Gender:</label>
+                         @(currentUser.Gender ? "Male" : "Female") <br /> <br />
+                        </div>
+                         <div>
+                        <label for="InterestedIn">Interested In:</label>
+                        @(currentUser.InterestedIn ? "Male" : "Female") <br /> <br />
+                         </div>
+                         <div>
+                        <label for="RegistrationDate">Registration Date:</label>
+                          @currentUser.RegistrationDate.ToShortDateString() <br /> <br />
+                        </div>
+                        <div>
+                            <label>&nbsp;</label>
+                            <input type="submit" value="Message" class="submit" /> <br /> <br />
+                        </div>
+                        <div>
+                        <h2> Like Section </h2> <br /> <br />
+                         <input id="zip" type="text" value="@currentUser.Zip" readonly>
+                         <input type="button" value="Get Location On Google Map" onclick="codeAddress()"> <br /> <br />
+                        </div>
 
-            </div>
-</form>
+                         <div id="map-canvas">
+
+                         </div>
+                    }
+}
+            </fieldset>
+
+        </div>
+    </form>
 </body>
 </html>
 

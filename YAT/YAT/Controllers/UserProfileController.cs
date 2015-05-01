@@ -28,14 +28,6 @@ namespace YAT.Controllers
             return View(YATUser); 
         } 
  
-        // 
-        // GET: UserProfile/Welcome
- 
-        public ActionResult Welcome() 
-        {
-            UserProfileController user = new UserProfileController();
-            return View(); 
-        } 
     } 
 }
 
