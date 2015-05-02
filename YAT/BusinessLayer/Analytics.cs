@@ -14,7 +14,7 @@ namespace BusinessLayer
         {
             using (var db = new YATContext())
             {
-                var rows = from movie in db.Likes
+                var rows = (from movie in db.Likes
                            orderby movie.Users.Count
                            select new StringRow
                            {
@@ -22,7 +22,7 @@ namespace BusinessLayer
                                value = movie.Users.Count
                            } into selection
                            orderby selection.value descending
-                           select selection;
+                           select selection).Take(30);
                 foreach (var row in rows)
                 {
                     Console.WriteLine("Movie: {0} {1}", row.name, row.value);

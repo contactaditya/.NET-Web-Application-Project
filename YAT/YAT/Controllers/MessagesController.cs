@@ -10,6 +10,8 @@ using DataLayer;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using BusinessLayer;
+using YAT.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YAT.Controllers
 {
@@ -20,8 +22,16 @@ namespace YAT.Controllers
         // GET: Messages
         public ActionResult Index()
         {
-            string user = "c";
-            if (user == null)
+            
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User user;
+            using (var dbContext = new YATContext())
+            {
+                user = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            string userid = user.Id;
+            if (userid == null)
             {
                 var messages = db.Messages.Include(m => m.From).Include(m => m.To);
                 return View(messages.ToList());
@@ -29,8 +39,26 @@ namespace YAT.Controllers
             else
             {
                 Messaging msg = new Messaging();
-                var messages = msg.getInbox(user);
-                return View(messages.ToList());
+                var messages = msg.getInbox(userid).ToList();
+                messages.Reverse();
+                List<String> noDupes = new List<String>();
+                List<Message> result = new List<Message>();
+                foreach (Message message in messages){
+
+                    if (noDupes.Contains(message.From.Id))
+                    {
+                        continue;
+                    }
+                    if (userid.Equals(message.From.Id))
+                    {
+                        noDupes.Add(message.To.Id);
+                        continue;
+                    }
+                    noDupes.Add(message.From.Id);
+                    result.Add(message);
+                }
+
+                return View(result.ToList());
             }
         }
 
@@ -54,7 +82,7 @@ namespace YAT.Controllers
 
 
         // GET: Messages/Create
-        public ActionResult Create()
+        public ActionResult Send()
         {
             ViewBag.FromId = new SelectList(db.User, "Id", "FirstName");
             ViewBag.ToId = new SelectList(db.User, "Id", "FirstName");
@@ -139,6 +167,29 @@ namespace YAT.Controllers
             db.Messages.Remove(message);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Read(string text, int hidden)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User user;
+            using (var dbContext = new YATContext())
+            {
+                user = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            string userid = user.Id;
+
+            Message message = db.Messages.Find(hidden);
+            Messaging msging = new Messaging();
+            var toID = message.ToId;
+            if (toID.Equals(userid))
+            {
+                toID = message.FromId;
+            }
+            msging.sendMessage(toID, userid, text);
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 
         protected override void Dispose(bool disposing)

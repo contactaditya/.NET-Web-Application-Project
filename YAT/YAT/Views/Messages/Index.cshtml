@@ -13,14 +13,23 @@
         <th>
             From
         </th>
-
+        <th>
+            To
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img id="InboxPic" src=~/Pics/batman.jpg />
-            @Html.DisplayFor(modelItem => item.From.FirstName)
+            <img id="InboxPic" src=/Pics/@item.From/@item.From.Photo />
+            @{
+                @Html.DisplayFor(modelItem => item.From.FirstName)
+            }
+        </td>
+        <td>
+            @{
+                @Html.DisplayFor(modelItem => item.To.FirstName)
+            }
         </td>
         <td>
             @(item.Text.Substring(0,Math.Min(item.Text.Length, 10))+"...")

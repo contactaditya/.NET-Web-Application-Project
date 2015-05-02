@@ -47,6 +47,10 @@
   
 }
 
+hr {   /*fixes footer*/
+  clear:left
+}
+
 
 /*Paul Changes to the navbar*/
 .navbar-inverse {

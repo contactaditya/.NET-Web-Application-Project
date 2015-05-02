@@ -175,7 +175,6 @@ namespace YAT.Controllers
                             LastName = model.LastName,
                             Age = model.Age,
                             Gender = model.Gender,
-                            Photo = model.Photo,
                             Address = model.Address,
                             InterestedIn = model.InterestedIn,
                             Deleted = false,

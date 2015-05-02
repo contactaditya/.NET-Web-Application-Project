@@ -14,13 +14,19 @@
 {
     <tr>
             <td>
-                <img id="InboxPic" src=~/Pics/batman.jpg />
+                <img id="InboxPic" src=/Pics/@item.From/@item.From.Photo />
                 @(item.From.FirstName + ":\n")
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
     </tr>
 }
 </table>
+       @using (Html.BeginForm("Read", "Messages", FormMethod.Post))
+       { 
+            <input type="text" id="text" name="text"/>
+            <input type="hidden" id="hidden" name="hidden" value="1">
+            <input type="submit" value="Send" class="btn btn-default" /> 
+       }
     <p>
         @Html.ActionLink("Back", "Index")
     </p>
