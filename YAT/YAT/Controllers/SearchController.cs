@@ -26,23 +26,26 @@ namespace YAT.Controllers
             User currentUser = b.getCurrentUser(User.Identity.GetUserId());
             string address;
             string InterestedIn;
+            bool gender;
             if (currentUser == null)
             {//set default values for Identity-YAT unsynced test user
                 address = "94104";
                 InterestedIn = "Women";
+                gender = true;
             }
             else
             {
+                gender = currentUser.Gender;
                 address = currentUser.Address;
                 InterestedIn =(currentUser.InterestedIn==false)?"Men":"Women";;
             }
-            
-            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
+
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: gender, InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
             ViewBag.minAge =20;
             ViewBag.maxAge = 35;
             ViewBag.address = address;
             ViewBag.sortOptions = SortOptions;
-            ViewBag.LookingFor = InterestedIn;
+            ViewBag.InterestedIn = InterestedIn;
             ViewBag.Type = "Search";
                 //new SelectList(new[] { "Best Match", "Activity Date","Newest" });
             return View(users);
@@ -51,7 +54,7 @@ namespace YAT.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(int minAge,int maxAge, string FindGender,string   LookForGender, string sortVal, string address)
+        public ActionResult Index(int minAge, int maxAge, string FindGender, string InterestedIn, string sortVal, string address)
         {
             Builder b = new Builder();
             UserSort sortBy;
@@ -66,13 +69,13 @@ namespace YAT.Controllers
             default: sortBy=UserSort.Match;
                  break;  
             }
-           
-            List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender ==  "Women", address:address  , SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
+
+            List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender == "Men", InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
             ViewBag.minAge = minAge;
             ViewBag.maxAge = maxAge;
             ViewBag.address = address;
             ViewBag.sortOptions = SortOptions;
-            ViewBag.LookForGender = LookForGender;
+            ViewBag.InterestedIn = InterestedIn;
             ViewBag.FindGender = FindGender;
             ViewBag.Type = "Search";
             return View(users);

@@ -16,7 +16,7 @@
     <p1>Find </p1>
     @Html.DropDownList("FindGender", new SelectList(new[] { "Men","Women"}))
     <p1> looking for </p1>
-    @Html.DropDownList("LookForGender", new SelectList(new[] { "Men", "Women" }))
+    @Html.DropDownList("InterestedIn", new SelectList(new[] { "Men", "Women" }))
     <p1> Minimum Age: </p1>
     <input class="smallBox" name="minAge" type="number" min="18" max="100" value=@ViewBag.minAge />
     <p1> Maximum Age:</p1>
@@ -38,10 +38,10 @@
     {
             <div class="productbox">
 
-                <h3 class="itemcenter">@item.FirstName</h3>
+                <h3 class="itemcenter">@(item.FirstName + ", " + item.Age)</h3>
              
                 <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="/Pics/@Url.Content(item.Photo)" />  </a>
-                <span class="itemcenter">@item.Age</span>
+                <span class="itemcenter">@("Last active:" + item.LastLoginDate.Date.ToString("d"))</span>
                 @*@Html.Hidden("Id", @item.Id)*@
   
             </div>
