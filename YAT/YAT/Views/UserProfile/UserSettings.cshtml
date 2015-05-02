@@ -27,33 +27,29 @@
                 @{
                     if (Request.IsAuthenticated)
                     {
-                        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                        var currentUser = manager.FindById(User.Identity.GetUserId());
-                        var UserProfile = new User();
-                        UserProfile.Id = currentUser.Id;
-
-                        using (var db = new YATContext())
-                        {
-                            var users = from user in db.User where user.Id == UserProfile.Id select user;
-
-                            foreach (var user in users)
-                            {
+                        var currentUser = (Model as DataLayer.User);
 
                                 <legend>  This Page Is Meant To Edit The Profile of the User </legend>
                                 <div>
-                                    <img src="http://placehold.it/512x384"> <br /> <br />
+                                    <img src="https://placehold.it/512x384"> <br /> <br />
+                               </div>
+                                <div>
+                                    <label for="file">Click Here To Upload Your Profile Picture:</label>
+                                    <input type="file" name="file" id="file"/> <br /> <br />
+                                    <input type="submit" value="Upload" class="submit" /> <br/> <br/>
+                                    <img src=/Pics/@currentUser.Id/@currentUser.Photo /> <br/> <br/>
                                 </div>
                                 <div>
                                     <label for="FirstName">First Name:</label>
-                                    <input type="text" name="FirstName" value="@user.FirstName" /> <br /> <br />
+                                    <input type="text" name="FirstName" value="@currentUser.FirstName" /> <br /> <br />
                                 </div>
                                 <div>
                                     <label for="LastName">Last Name:</label>
-                                    <input type="text" name="LastName" value="@user.LastName" /> <br /> <br />
+                                    <input type="text" name="LastName" value="@currentUser.LastName" /> <br /> <br />
                                 </div>
                                 <div>
                                     <label for="Age">Age:</label>
-                                    <input type="text" name="Age" value="@user.Age" /> <br /> <br />
+                                    <input type="text" name="Age" value="@currentUser.Age" /> <br /> <br />
                                 </div>
                                 <div>
                                     <label for="Gender">Gender:</label>
@@ -70,30 +66,18 @@
                                     </select>   <br /> <br />
                                 </div>
                                 <div>
-                                    <label for="RegistrationDate">Registration Date:</label>
-                                    <input type="text" name="RegistrationDate" value="@user.RegistrationDate.ToShortDateString()" /> <br /> <br />
-                                </div>
-                                <div>
                                     <label for="Address">Address:</label>
-                                    <input type="text" name="Address" value="@user.Address" /> <br /> <br />
+                                    <input type="text" name="Address" value="@currentUser.Address" /> <br /> <br />
                                 </div>
                                 <div>
                                     <label>&nbsp;</label>
                                     <input type="submit" value="Update" class="submit" /> <br /> <br />
                                 </div>
-
-                                db.Entry(user).CurrentValues.SetValues(user);
-                                db.Entry(user).State = EntityState.Modified;
-
-
-                            }
-
-                            db.SaveChanges();
-
-                        }
-
+                                <div>
+                                @Html.ActionLink("Back to List", "Index")
+                                </div>
                     }
-                }
+}
 
             </fieldset>
 
