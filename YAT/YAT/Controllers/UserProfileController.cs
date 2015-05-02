@@ -50,8 +50,25 @@ namespace YAT.Controllers
             }
             return View(user);
         }
+
+        [HttpPost]
+        public ActionResult SendMessage(string text, string hidden)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User fromUser;
+            using (var dbContext = new YATContext())
+            {
+                fromUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            var user = db.User.Find(hidden);
+            Messaging msging = new Messaging();
+            msging.sendMessage(hidden, fromUser.Id, text);
+            return View(user);
+        }
  
     } 
+
     }
 
 
