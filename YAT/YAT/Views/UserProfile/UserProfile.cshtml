@@ -116,12 +116,6 @@
                         if (Model.Id != currentUser.Id)
                         { 
                         <div>
-                            @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
-                            {
-                                <input type="text" id="text" name="text"/>
-                                <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
-                                <input type="submit" value="Message" class="btn btn-default" />
-                            }
                             <label>&nbsp;</label>
                             <br /> <br />
                         </div> 
@@ -149,6 +143,12 @@
 
         </div>
     </form>
+    @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
+    {
+        <input type="text" id="text" name="text" />
+        <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
+        <input type="submit" value="Message" class="btn btn-default" />
+    }
 </body>
 </html>
 
