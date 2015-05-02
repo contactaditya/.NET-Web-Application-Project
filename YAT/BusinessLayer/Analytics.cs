@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,15 @@ namespace BusinessLayer
 {
     public class Analytics
     {
+        private static Dictionary<string, string> zipStates = new Dictionary<string, string>();
+        public Analytics()
+        {
+            if (zipStates.Count == 0)
+            {
+                ZipStates.makeZipStates(zipStates);
+            }
+        }
+
         public IEnumerable<StringRow> movieRank()
         {
             using (var db = new YATContext())
@@ -82,21 +93,37 @@ namespace BusinessLayer
                 return rows.ToList();
             }
         }
-        public IEnumerable<StringRow> zipCount()
+        public IEnumerable<StringRow> stateCount()
         {
             using (var db = new YATContext())
             {
                 var rows = from user in db.User
                            group user by user.Address into tempTable
-                           select new StringRow { name = tempTable.Key, value = tempTable.Count() } 
+                           select new { name = tempTable.Key, value = tempTable.Count() } 
                            into selection
                            orderby selection.value descending
-                           select selection;
+                           select selection;               
+                SortedDictionary<String, int> stateCount = new SortedDictionary<String, int>();
                 foreach (var row in rows)
                 {
-                    Console.WriteLine("Zip: {0} {1}", row.name, row.value);
+                    if (stateCount.Keys.Contains(zipStates[row.name]))
+                    {
+                        stateCount[zipStates[row.name]] += row.value;
+                    }
+                    else{
+                        stateCount[zipStates[row.name]] = row.value;
+                    }
                 }
-                return rows.ToList();
+                var newRows = from entry in stateCount 
+                              select new StringRow {name = entry.Key, value = entry.Value}
+                              into selection
+                              orderby selection.value descending
+                              select selection;
+                foreach (var row in newRows)
+                {
+                    Console.WriteLine("State: {0} {1}", row.name, row.value);
+                }
+                return newRows;
             }
         }
     }

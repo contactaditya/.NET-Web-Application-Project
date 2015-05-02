@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using BusinessLayer;
 using System.Data.Entity;
 using DataLayer;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace YATConsole
 {
@@ -37,7 +39,7 @@ namespace YATConsole
             a.genderCount();
             a.ageRank();
             a.registrationMonths();
-            a.zipCount();
+            a.stateCount();
             Console.WriteLine();
 
             Console.WriteLine("SORTING");
@@ -45,11 +47,27 @@ namespace YATConsole
             qryTester(UserSort.LastLog);
             qryTester(UserSort.Match);
 
+            //unable to read file in builderlayer
+            //makeZipBinary(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())), "zips.csv"));
+
             Console.WriteLine("\nDone!");
             Console.ReadKey();
-
         }
 
-        
+        public static void makeZipBinary(string filename)
+        {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            string[] lines = System.IO.File.ReadAllLines(filename);
+            foreach (string line in lines)
+            {
+                string[] stringSeparators = new string[] { "," };
+                string[] result = line.Split(stringSeparators, StringSplitOptions.None);
+                dictionary.Add(result[0], result[1]);
+            }
+            Stream outstream = File.Open("zipd.bin", FileMode.Create);
+            BinaryFormatter outformatter = new BinaryFormatter();
+            outformatter.Serialize(outstream, dictionary);
+            outstream.Close();
+        }
     }
 }

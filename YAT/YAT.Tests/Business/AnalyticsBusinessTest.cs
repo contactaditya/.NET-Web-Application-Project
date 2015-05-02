@@ -24,7 +24,7 @@ namespace YAT.Tests.Business
         }
         public void Address()
         {
-            IEnumerable<StringRow> ranks = a.zipCount();
+            IEnumerable<StringRow> ranks = a.stateCount();
             Assert.IsNotNull(ranks);
         }
         public void registrationMonths()

@@ -40,7 +40,7 @@
 
                 <h3 class="itemcenter">@item.FirstName</h3>
              
-                <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="@Url.Content(item.Photo)" />  </a>
+                <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="/Pics/@Url.Content(item.Photo)" />  </a>
                 <span class="itemcenter">@item.Age</span>
                 @*@Html.Hidden("Id", @item.Id)*@
   
