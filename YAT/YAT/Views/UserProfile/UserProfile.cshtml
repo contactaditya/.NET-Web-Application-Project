@@ -113,7 +113,7 @@
                         <label for="RegistrationDate">Registration Date:</label>
                           @currentUser.RegistrationDate.ToShortDateString() <br /> <br />
                         </div>
-                        if (Model.Id != currentUser.Id)
+                        if (User.Identity.GetUserId() != @currentUser.Id)
                         { 
                         <div>
                             <label>&nbsp;</label>
