@@ -1,11 +1,16 @@
 ﻿@model IEnumerable<DataLayer.User>
 
-@{
-    ViewBag.Title = "Search Page";
-}
 
-@if (ViewBag.Type=="Search")
+@if (ViewBag.Automatch == true)
 {
+    ViewBag.Title = "Automatch Page";
+    <h1>Your matches for today!</h1>
+}
+else
+{
+    ViewBag.Title = "Search Page";
+
+
 <div class="jumbotron">
     <h1>Search Users</h1>
     <p>Local time is @DateTime.Now.ToString("hh:mm:ss")</p>

@@ -20,7 +20,12 @@ namespace YAT.Controllers
         List<String> SortOptions = new List<String> { "Best Match", "Activity Date", "Newest" };
 
         // GET: Search
-        public ActionResult Index()
+         public ActionResult Automatch()
+        {
+
+            return RedirectToAction("Index", new { isAutoMatch = true});
+        }
+        public ActionResult Index(bool isAutoMatch=false)
         {
             Builder b = new Builder();
             User currentUser = b.getCurrentUser(User.Identity.GetUserId());
@@ -46,7 +51,7 @@ namespace YAT.Controllers
             ViewBag.address = address;
             ViewBag.sortOptions = SortOptions;
             ViewBag.InterestedIn = InterestedIn;
-            ViewBag.Type = "Search";
+            ViewBag.Automatch = isAutoMatch;
                 //new SelectList(new[] { "Best Match", "Activity Date","Newest" });
             return View(users);
         }
@@ -77,7 +82,7 @@ namespace YAT.Controllers
             ViewBag.sortOptions = SortOptions;
             ViewBag.InterestedIn = InterestedIn;
             ViewBag.FindGender = FindGender;
-            ViewBag.Type = "Search";
+            ViewBag.Automatch = false;
             return View(users);
 
 
