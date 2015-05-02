@@ -80,7 +80,14 @@
                         var currentUser = (Model as DataLayer.User);
                         <legend>  This Page Contains The Details Of The User </legend>
                         <div>
-                            <img src="/Pics/@currentUser.Photo"> <br /> <br />
+                            @if(@currentUser.Gender.Equals(true))
+                            {
+                            <img src="~/Pics/male.jpg"> <br /> <br />
+                            }
+                            else
+                            {
+                            <img src="~/Pics/female.jpg"> <br /> <br />
+                            }
                         </div>
                          <div>
                         <label for="FirstName">First Name:</label>
