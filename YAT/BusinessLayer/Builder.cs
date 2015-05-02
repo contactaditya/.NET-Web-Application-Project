@@ -11,7 +11,7 @@ namespace BusinessLayer
     public enum UserSort { Match, LastLog, LastJoin }
     public class Builder
     {
-    public User getCurrentUser(string userID)
+        public User getCurrentUser(string userID)
         {
             using (var dbContext = new YATContext())
             {
@@ -19,6 +19,7 @@ namespace BusinessLayer
             }
 
         }
+        
         public void putData()
         {
             using (var dbContext = new YATContext())
