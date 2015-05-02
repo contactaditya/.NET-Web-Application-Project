@@ -28,15 +28,14 @@ namespace YAT.Controllers
             ViewData["ageRank"]            = business.ageRank();
             ViewData["registrationMonths"] = business.registrationMonths();
             ViewData["zipCount"]           = business.zipCount();
-
+            
+            User YATUser = new User();
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            User YATUser;
             using (var dbContext = new YATContext())
             {
                 YATUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
             }
-
             return View(YATUser);
         }
 
@@ -51,10 +50,10 @@ namespace YAT.Controllers
                     var YATUser = dbContext.User.Where(p => p.Id.Equals(currentUser.Id)).FirstOrDefault();
 
                     string picName = System.IO.Path.GetFileName(file.FileName);
-                    var folder = Directory.CreateDirectory(Server.MapPath("~/Pics/" + YATUser.Id));
-                    file.SaveAs(System.IO.Path.Combine(folder.FullName, picName));
+                    String photo = YATUser.Id + Path.GetExtension(picName);
+                    file.SaveAs(Server.MapPath("~/Pics/" + photo));
 
-                    YATUser.Photo = picName;
+                    YATUser.Photo = photo;
                     dbContext.SaveChanges();
                 }
 

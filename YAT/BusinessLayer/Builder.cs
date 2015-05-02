@@ -31,7 +31,7 @@ namespace BusinessLayer
 
                 paul = new User
                 {
-                    Id = "a",
+                    Id = "1",
                     Address = "11791",
                     FirstName = "Paul",
                     LastName = "Sultan",
@@ -39,12 +39,12 @@ namespace BusinessLayer
                     Gender = true,
                     Deleted = false,
                     InterestedIn = false,
+                    Photo = "male.jpg",
                     RegistrationDate = Convert.ToDateTime("01/11/2015"),
                     LastLoginDate = DateTime.Now,
                 };
                 var mike = new User
                 {
-                    Id="b",
                     Address = "11791",
                     FirstName = "Mike",
                     LastName = "Sultan",
@@ -52,13 +52,12 @@ namespace BusinessLayer
                     Gender = true,
                     Deleted = false,
                     InterestedIn = false,
+                    Photo = "male.jpg",
                     RegistrationDate = Convert.ToDateTime("01/20/2015"),
                     LastLoginDate = DateTime.Now,
-
                 };
                 var sue = new User
                 {
-                    Id = "c",
                     Address = "10010",
                     FirstName = "Sue",
                     LastName = "Flower",
@@ -66,9 +65,9 @@ namespace BusinessLayer
                     Gender = false,
                     Deleted = false,
                     InterestedIn = true,
+                    Photo = "female.jpg",
                     RegistrationDate = Convert.ToDateTime("04/30/2015"),
                     LastLoginDate = DateTime.Now,
-
                 };
                 var Ariel = new User
                 {
@@ -80,9 +79,9 @@ namespace BusinessLayer
                     Gender = true,
                     Deleted = false,
                     InterestedIn = false,
+                    Photo = "male.jpg",
                     RegistrationDate = Convert.ToDateTime("04/20/2015"),
                     LastLoginDate = DateTime.Now,
-
                 };
                 dbContext.User.Add(paul);
                 dbContext.User.Add(mike);
@@ -164,13 +163,9 @@ namespace BusinessLayer
 
         public void userGenerator(int count)
         {
-            //disabled while testing
-            return;
-
             using (var dbContext = new YATContext())
             {
-                User paul = dbContext.User.Where(p => p.FirstName.Contains("Paul")).FirstOrDefault();
-                if (paul != null)
+                if (dbContext.User.Count() > 10)
                 {
                     return;
                 }
@@ -193,7 +188,7 @@ namespace BusinessLayer
                     bool gender = rnd.Next(100) < 50 ? true : false;
                     bool interestedIn = !gender;
                     DateTime registarationDate = DateTime.Now.AddDays(rnd.Next(365));
-
+                    String photo = gender ? "male.jpg" : "female.jpg";
                     User u = new User
                     {
                         Address = zip,
@@ -201,7 +196,7 @@ namespace BusinessLayer
                         LastName = lastName,
                         Age = age,
                         Gender = gender,
-                        Photo = "paul.jpg",
+                        Photo = photo,
                         Deleted = false,
                         InterestedIn = interestedIn,
                         RegistrationDate = registarationDate,

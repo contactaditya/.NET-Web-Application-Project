@@ -11,13 +11,13 @@ namespace DataLayer
 {
     public class User
     {
-        public User()
-        {
+        public User() {
             this.Likes = new HashSet<Likes>();
+
+            this.Id = Guid.NewGuid().ToString();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
         public string Address { get; set; }
         [MinLength(1), MaxLength(30)]
