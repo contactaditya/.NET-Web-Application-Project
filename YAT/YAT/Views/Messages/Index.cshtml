@@ -13,7 +13,9 @@
         <th>
             From
         </th>
-
+        <th>
+            To
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -21,8 +23,12 @@
         <td>
             <img id="InboxPic" src=/Pics/@item.From/@item.From.Photo />
             @{
-                
                 @Html.DisplayFor(modelItem => item.From.FirstName)
+            }
+        </td>
+        <td>
+            @{
+                @Html.DisplayFor(modelItem => item.To.FirstName)
             }
         </td>
         <td>
