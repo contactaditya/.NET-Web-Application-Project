@@ -100,7 +100,7 @@ namespace YAT.Controllers
             var user = db.User.Find(hidden);
             Messaging msging = new Messaging();
             msging.sendMessage(hidden, fromUser.Id, text);
-            return View(user);
+            return Redirect(Url.Content("~/Messages"));
         }
  
     } 
