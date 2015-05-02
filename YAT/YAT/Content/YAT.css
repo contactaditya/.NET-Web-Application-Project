@@ -1,14 +1,15 @@
 ﻿/*Ariel Changes*/
 .productpix {
-    /*height: 150px;
-    width: 150px;*/
-    max-height: 200px;
-    max-width: 150px;
+    height: 20px;
+    width: 15px;
+    /*max-height: 200px;
+    max-width: 150px;*/
 }
 
-.productcontainer {
+.searchcontainer {
     max-width: 812px;
     height: auto;
+   display: block;
 }
 
 .productbox { 
@@ -24,16 +25,26 @@
     padding: 10px;
     text-align: center;
     width: 50%;
+    
+    /*width: 100px;
+    height: 200px;*/
     display: block;
     margin: auto;
 }
-smallBox
+.smallBox
 {
-   width: 50px ;
+   width: 60px ;
+   text-align:right;
 }
-searchfooter {
-   padding-top: 650px;
-   height: 8em;
+.ZipBox
+{
+   width: 80px ;
+   text-align:right;
+}
+
+.searchfooter {
+   display:block;
+  
 }
 
 

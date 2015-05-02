@@ -166,22 +166,24 @@ namespace BusinessLayer
             }
         }
 
-        public void userGenerator(int count)
+         public void userGenerator(int count)
         {
             //disabled while testing
-            return;
+           // return;
 
             using (var dbContext = new YATContext())
             {
-                User paul = dbContext.User.Where(p => p.FirstName.Contains("Paul")).FirstOrDefault();
+                User paul = dbContext.User.Where(p => p.FirstName.Contains("Jacob")).FirstOrDefault();
                 if (paul != null)
                 {
                     return;
                 }
 
                 List<String> names = new List<string>{"Jacob", "Michael", "Joshua", "Matthew", "Andrew", "Ethan", "Joseph", "Daniel", "Christopher", "Anthony", "William", "Nicholas", "Ryan", "David", "Tyler", "Alexander", "John", "James", "Dylan", "Zachary", "Brandon", "Jonathan", "Samuel", "Benjamin", "Christian", "Justin", "Nathan", "Logan", "Gabriel", "Jose", "Noah", "Kevin", "Austin", "Caleb", "Robert", "Thomas", "Elijah", "Jordan", "Aidan", "Cameron", "Hunter", "Jason", "Connor", "Evan", "Jack", "Luke", "Angel", "Isaac", "Isaiah", "Aaron", "Gavin", "Jackson", "Kyle", "Mason", "Juan", "Eric", "Charles", "Adam", "Brian"};
-                List<int> address = new List<int> {94104, 10022, 20005, 20036, 20001, 20006, 10019, 60611, 60614, 10021, 11733, 10024, 10023, 67201, 10075, 89109, 10065, 94111, 77024, 22101, 20007, 90067, 10128, 33480, 82922, 60045, 10106, 20004, 20008, 15222, 75205, 94301, 10028, 75219, 10017, 76102, 10011, 60093, 20003, 90210, 30327, 20815, 20854, 20910, 90049};
+               // List<int> address = new List<int> {94104, 10022, 20005, 20036, 20001, 20006, 10019, 60611, 60614, 10021, 11733, 10024, 10023, 67201, 10075, 89109, 10065, 94111, 77024, 22101, 20007, 90067, 10128, 33480, 82922, 60045, 10106, 20004, 20008, 15222, 75205, 94301, 10028, 75219, 10017, 76102, 10011, 60093, 20003, 90210, 30327, 20815, 20854, 20910, 90049};
+                List<int> address = new List<int> { 94104};
                 List<String> movies = new List<string> { "The Shawshank Redemption", "The Godfather", "The Godfather: Part II", "The Dark Knight", "Pulp Fiction", "Schindler's List", "12 Angry Men", "The Good, the Bad and the Ugly", "The Lord of the Rings: The Return of the King", "Fight Club", "The Lord of the Rings: The Fellowship of the Ring", "Star Wars: Episode V - The Empire Strikes Back", "Inception", "One Flew Over the Cuckoo's Nest", "The Lord of the Rings: The Two Towers", "Goodfellas", "The Matrix", "Star Wars: Episode IV - A New Hope", "Seven Samurai", "City of God", "Se7en", "The Usual Suspects", "The Silence of the Lambs", "Interstellar", "It's a Wonderful Life", "Léon: The Professional", "Life Is Beautiful", "Once Upon a Time in the West", "Casablanca", "American History X", "Saving Private Ryan", "Raiders of the Lost Ark", "Spirited Away", "City Lights", "Psycho", "Rear Window"};
+                List<string> pics = new List<string> { "batman", "superman", "joker" };
                 foreach(var eachMovie in movies){
                     dbContext.Likes.Add(new Likes { Movie = eachMovie });
                 }
@@ -197,15 +199,16 @@ namespace BusinessLayer
                     bool gender = rnd.Next(100) < 50 ? true : false;
                     bool interestedIn = !gender;
                     DateTime registarationDate = DateTime.Now.AddDays(rnd.Next(365));
-
+                    string picURL = "Pics/" + pics[rnd.Next(pics.Count)] +".jpg";
                     User u = new User
                     {
+                        Id = Convert.ToString(i),
                         Address = Convert.ToString(zip),
                         FirstName = firstName,
                         LastName = lastName,
                         Age = age,
                         Gender = gender,
-                        Photo = "paul.jpg",
+                        Photo = picURL,
                         Deleted = false,
                         InterestedIn = interestedIn,
                         RegistrationDate = registarationDate,
@@ -225,10 +228,11 @@ namespace BusinessLayer
         public List<User> queryUsers(int minAge, int maxAge, bool gender, string address, string SearcherID, UserSort sortBy )
         {
             string qryStr;
+            string excludeQry = "select ToID from dbo.Connections where FromID ='" + SearcherID + "' and (isRemoved=1 or isBlocked=1)";
             string filteredUsers =
                 "SELECT u.ID from dbo.Users as u where " +
                  "u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
-              " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Address = '" + address + "'";
+              " and u.Gender = " + Convert.ToInt32(gender) + "  and u.Address = '" + address + "' and u.ID not in (" + excludeQry +")";
                  string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
             using (var dbContext = new YATContext())

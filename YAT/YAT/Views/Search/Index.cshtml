@@ -18,41 +18,32 @@
     <p1> Minimum Age: </p1>
     <input class="smallBox" name="minAge" type="number" min="18" max="100" value=@ViewBag.minAge />
     <p1> Maximum Age:</p1>
-    <input name="maxAge" type="number" min="18" max="100" value=@ViewBag.maxAge />
-  
-    <p1>Address:</p1>
-    <input name="address" type="number" min="0" max="99999" value=@ViewBag.address />
+    <input class="smallBox" name="maxAge" type="number" min="18" max="100" value=@ViewBag.maxAge />
+
+    <p1>Zipcode:</p1>
+    <input class ="ZipBox" name="address" type="text" max="99999" value=@ViewBag.address />
     <p1> Sort by:</p1>
-    @Html.DropDownList("sortby", new SelectList(new[] { "Best Match", "Activity Date","Newest" }))
+    @Html.DropDownList("sortVal", new SelectList(ViewBag.sortOptions))
+        
     <input type="submit" value="Find!" class="btn btn-default" />
     }
 </div>
 
 
-<div class="searchcontainer searchfooter">
+<div class="searchcontainer">
     <h1>Users Found: @Model.Count()</h1>
     @foreach (var item in Model)
     {
-        using (Html.BeginForm("Index", "UserProfile", FormMethod.Post))
-        {
             <div class="productbox">
 
                 <h3 class="itemcenter">@item.FirstName</h3>
-                @if (item.Photo=="") 
-                { item.Photo="/Pics/joker.jpg";}
-                <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="productpix itemcenter" src="@Url.Content(item.Photo)" />  </a>
-
+             
+                <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="@Url.Content(item.Photo)" />  </a>
                 <span class="itemcenter">@item.Age</span>
-                @Html.Hidden("Id", @item.Id)
-                @*<div class="itemcenter">
-                <!--    <input name="quantity" type="number" min="1" max="100" value="1" /> -->
-                    @Html.Hidden("Id", @item.Id)
-                 <!--       <input type="submit" value="Message" class="btn btn-default" />-->
-                </div>*@
-
+                @*@Html.Hidden("Id", @item.Id)*@
+  
             </div>
-        }
 
-    }
- @*<div class="footer"> </div>*@
+     }
+
 </div>

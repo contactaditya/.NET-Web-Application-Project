@@ -10,7 +10,7 @@ namespace YAT
         public void Configuration(IAppBuilder app)
         {
             Builder builder = new Builder();
-            builder.putData();
+         //   builder.putData();
             builder.userGenerator(300);
             builder.getData();
             

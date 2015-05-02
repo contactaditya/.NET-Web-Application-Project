@@ -13,25 +13,38 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace YAT.Controllers
 {
      [Authorize]
+    
+     
+
     public class SearchController : Controller
     {
+        List<String> SortOptions = new List<String> { "Best Match", "Activity Date", "Newest" };
+
         // GET: Search
         public ActionResult Index()
         {
             Builder b = new Builder();
             User currentUser = b.getCurrentUser(User.Identity.GetUserId());
             string address;
+            string InterestedIn;
             if (currentUser == null)
-                address = "11791"; 
+            {//set default values for Identity-YAT unsynced test user
+                address = "94104";
+                InterestedIn = "Women";
+            }
             else
+            {
                 address = currentUser.Address;
-
-        
-            //Test searching users
+                InterestedIn =(currentUser.InterestedIn==false)?"Men":"Women";;
+            }
+            
             List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
             ViewBag.minAge =20;
             ViewBag.maxAge = 35;
             ViewBag.address = address;
+            ViewBag.sortOptions = SortOptions;
+            ViewBag.LookingFor = InterestedIn;
+                //new SelectList(new[] { "Best Match", "Activity Date","Newest" });
             return View(users);
         }
 
@@ -51,11 +64,14 @@ namespace YAT.Controllers
             default: sortBy=UserSort.Match;
                  break;  
             }
-            //Test searching users
+           
             List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender ==  "Women", address:address  , SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
             ViewBag.minAge = minAge;
             ViewBag.maxAge = maxAge;
             ViewBag.address = address;
+            ViewBag.sortOptions = SortOptions;
+            ViewBag.LookForGender = LookForGender;
+            ViewBag.FindGender = FindGender;
             return View(users);
         }
     }
