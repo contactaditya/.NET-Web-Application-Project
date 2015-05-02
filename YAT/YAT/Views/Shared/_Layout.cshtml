@@ -25,7 +25,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("View Profile", "UserProfile", "UserProfile")</li>
-                        <li>@Html.ActionLink("Edit Profile", "UserSettings", "UserSettings")</li>
+                        <li>@Html.ActionLink("Edit Profile", "UserSettings", "UserProfile")</li>
                         <li>@Html.ActionLink("Auto-Match", "", "")</li>
                         <li>@Html.ActionLink("Search", "Index", "Search")</li>
                         <li>@Html.ActionLink("Messages", "Index", "Messages")</li>
