@@ -4,6 +4,8 @@
     ViewBag.Title = "Search Page";
 }
 
+@if (ViewBag.Type=="Search")
+{
 <div class="jumbotron">
     <h1>Search Users</h1>
     <p>Local time is @DateTime.Now.ToString("hh:mm:ss")</p>
@@ -28,7 +30,7 @@
     <input type="submit" value="Find!" class="btn btn-default" />
     }
 </div>
-
+}
 
 <div class="searchcontainer">
     <h1>Users Found: @Model.Count()</h1>

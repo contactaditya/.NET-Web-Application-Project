@@ -14,7 +14,6 @@ namespace YAT.Controllers
 {
      [Authorize]
     
-     
 
     public class SearchController : Controller
     {
@@ -44,9 +43,12 @@ namespace YAT.Controllers
             ViewBag.address = address;
             ViewBag.sortOptions = SortOptions;
             ViewBag.LookingFor = InterestedIn;
+            ViewBag.Type = "Search";
                 //new SelectList(new[] { "Best Match", "Activity Date","Newest" });
             return View(users);
         }
+
+
 
         [HttpPost]
         public ActionResult Index(int minAge,int maxAge, string FindGender,string   LookForGender, string sortVal, string address)
@@ -72,7 +74,11 @@ namespace YAT.Controllers
             ViewBag.sortOptions = SortOptions;
             ViewBag.LookForGender = LookForGender;
             ViewBag.FindGender = FindGender;
+            ViewBag.Type = "Search";
             return View(users);
+
+
+
         }
     }
 }
