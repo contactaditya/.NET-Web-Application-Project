@@ -113,6 +113,8 @@
                         <label for="RegistrationDate">Registration Date:</label>
                           @currentUser.RegistrationDate.ToShortDateString() <br /> <br />
                         </div>
+                        if (Model.Id != currentUser.Id)
+                        { 
                         <div>
                             @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
                             {
@@ -122,7 +124,7 @@
                             }
                             <label>&nbsp;</label>
                             <br /> <br />
-                        </div>
+                        </div> 
                         <div>
                         <label>&nbsp;</label>
                         <input type="submit" value="Block" class="submit" /> <br /> <br />
@@ -131,6 +133,7 @@
                         <label>&nbsp;</label>
                         <input type="submit" value="Hide" class="submit" /> <br /> <br />
                         </div>
+                         }
                         <div>
                         <h2> Like Section </h2> <br /> <br />
                          <input id="address" type="text" value="@currentUser.Address" readonly>
