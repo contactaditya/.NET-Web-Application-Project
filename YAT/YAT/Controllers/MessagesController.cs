@@ -49,6 +49,11 @@ namespace YAT.Controllers
                     {
                         continue;
                     }
+                    if (userid.Equals(message.From.Id))
+                    {
+                        noDupes.Add(message.To.Id);
+                        continue;
+                    }
                     noDupes.Add(message.From.Id);
                     result.Add(message);
                 }
@@ -179,7 +184,7 @@ namespace YAT.Controllers
             Message message = db.Messages.Find(hidden);
             Messaging msging = new Messaging();
             var toID = message.ToId;
-            if (toID == userid)
+            if (toID.Equals(userid))
             {
                 toID = message.FromId;
             }
