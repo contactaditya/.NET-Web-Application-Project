@@ -171,7 +171,8 @@ namespace BusinessLayer
                     return;
                 }
 
-                List<String> names = new List<string>{"Jacob", "Michael", "Joshua", "Matthew", "Andrew", "Ethan", "Joseph", "Daniel", "Christopher", "Anthony", "William", "Nicholas", "Ryan", "David", "Tyler", "Alexander", "John", "James", "Dylan", "Zachary", "Brandon", "Jonathan", "Samuel", "Benjamin", "Christian", "Justin", "Nathan", "Logan", "Gabriel", "Jose", "Noah", "Kevin", "Austin", "Caleb", "Robert", "Thomas", "Elijah", "Jordan", "Aidan", "Cameron", "Hunter", "Jason", "Connor", "Evan", "Jack", "Luke", "Angel", "Isaac", "Isaiah", "Aaron", "Gavin", "Jackson", "Kyle", "Mason", "Juan", "Eric", "Charles", "Adam", "Brian"};
+                List<String> maleNames = new List<string>{"Jacob", "Michael", "Joshua", "Matthew", "Andrew", "Ethan", "Joseph", "Daniel", "Christopher", "Anthony", "William", "Nicholas", "Ryan", "David", "Tyler", "Alexander", "John", "James", "Dylan", "Zachary", "Brandon", "Jonathan", "Samuel", "Benjamin", "Christian", "Justin", "Nathan", "Logan", "Jose", "Noah", "Kevin", "Austin", "Caleb", "Robert", "Thomas", "Elijah", "Jordan", "Aidan", "Cameron", "Hunter", "Jason", "Connor", "Evan", "Jack", "Luke", "Angel", "Isaac", "Isaiah", "Aaron", "Gavin", "Jackson", "Kyle", "Mason", "Juan", "Eric", "Charles", "Adam", "Brian"};
+                List<String> femaleNames = new List<string> { "Mary", "Patricia", "Jennifer", "Elizabeth", "Linda", "Barbara", "Susan", "Margaret", "Jessica", "Dorothy", "Sarah", "Karen", "Nancy", "Betty", "Lisa", "Sandra", "Helen", "Ashley", "Donna", "Kimberly", "Carol", "Michelle", "Emily", "Amanda", "Melissa", "Deborah", "Laura", "Stephanie", "Rebecca", "Sharon", "Cynthia", "Kathleen", "Ruth", "Anna", "Shirley", "Amy", "Angela", "Virginia", "Brenda", "Pamela", "Catherine", "Katherine", "Nicole", "Christine" };
                 List<String> address = new List<string> {"94104", "10022", "20005", "20036", "20001", "20006", "10019", "60611", "60614", "10021", "11733", "10024", "10023", "67201", "10075", "89109", "10065", "94111", "77024", "22101", "20007", "90067", "10128", "33480", "82922", "60045", "10106", "20004", "20008", "15222", "75205", "94301", "10028", "75219", "10017", "76102", "10011", "60093", "20003", "90210", "30327", "20815", "20854", "20910", "90049"};
                 List<String> movies = new List<string> { "The Shawshank Redemption", "The Godfather", "The Godfather: Part II", "The Dark Knight", "Pulp Fiction", "Schindler's List", "12 Angry Men", "The Good, the Bad and the Ugly", "The Lord of the Rings: The Return of the King", "Fight Club", "The Lord of the Rings: The Fellowship of the Ring", "Star Wars: Episode V - The Empire Strikes Back", "Inception", "One Flew Over the Cuckoo's Nest", "The Lord of the Rings: The Two Towers", "Goodfellas", "The Matrix", "Star Wars: Episode IV - A New Hope", "Seven Samurai", "City of God", "Se7en", "The Usual Suspects", "The Silence of the Lambs", "Interstellar", "It's a Wonderful Life", "Léon: The Professional", "Life Is Beautiful", "Once Upon a Time in the West", "Casablanca", "American History X", "Saving Private Ryan", "Raiders of the Lost Ark", "Spirited Away", "City Lights", "Psycho", "Rear Window"};
                 foreach(var eachMovie in movies){
@@ -183,10 +184,17 @@ namespace BusinessLayer
                     Random rnd = new Random();
                     
                     string zip = address[rnd.Next(address.Count)];
-                    string firstName = names[rnd.Next(names.Count)];
-                    string lastName = names[rnd.Next(names.Count)];
-                    int age = rnd.Next(18, 100);
                     bool gender = rnd.Next(100) < 50 ? true : false;
+                    string firstName;
+                    if (gender){
+                        firstName = maleNames[rnd.Next(maleNames.Count)];
+                    }
+                    else{
+                        firstName = femaleNames[rnd.Next(femaleNames.Count)];
+                    }
+                    string lastName = maleNames[rnd.Next(maleNames.Count)];
+                    int age = rnd.Next(18, 100);
+                    
                     bool interestedIn = !gender;
                     DateTime registarationDate = DateTime.Now.AddDays(rnd.Next(365));
                     String photo = gender ? "male.jpg" : "female.jpg";
