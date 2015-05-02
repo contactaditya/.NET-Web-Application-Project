@@ -52,6 +52,7 @@ namespace YAT.Controllers
                     if (userid.Equals(message.From.Id))
                     {
                         noDupes.Add(message.To.Id);
+                        result.Add(message);
                         continue;
                     }
                     noDupes.Add(message.From.Id);
