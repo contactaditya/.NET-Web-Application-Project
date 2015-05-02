@@ -10,6 +10,8 @@ using DataLayer;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using BusinessLayer;
+using YAT.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YAT.Controllers
 {
@@ -20,8 +22,16 @@ namespace YAT.Controllers
         // GET: Messages
         public ActionResult Index()
         {
-            string user = "c";
-            if (user == null)
+            
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User user;
+            using (var dbContext = new YATContext())
+            {
+                user = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            string userid = user.Id;
+            if (userid == null)
             {
                 var messages = db.Messages.Include(m => m.From).Include(m => m.To);
                 return View(messages.ToList());
@@ -29,7 +39,7 @@ namespace YAT.Controllers
             else
             {
                 Messaging msg = new Messaging();
-                var messages = msg.getInbox(user).ToList();
+                var messages = msg.getInbox(userid).ToList();
                 messages.Reverse();
                 List<String> noDupes = new List<String>();
                 List<Message> result = new List<Message>();
@@ -155,12 +165,25 @@ namespace YAT.Controllers
         }
 
         [HttpPost]
-        public ActionResult Read(string text)
+        public ActionResult Read(string text, int hidden)
         {
-            User usr = db.User.Find("b");
-            User usr2 = db.User.Find("c");
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User user;
+            using (var dbContext = new YATContext())
+            {
+                user = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            string userid = user.Id;
+
+            Message message = db.Messages.Find(hidden);
             Messaging msging = new Messaging();
-            msging.sendMessage(usr.Id, usr2.Id, text);
+            var toID = message.ToId;
+            if (toID == userid)
+            {
+                toID = message.FromId;
+            }
+            msging.sendMessage(toID, userid, text);
             return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
         }
 

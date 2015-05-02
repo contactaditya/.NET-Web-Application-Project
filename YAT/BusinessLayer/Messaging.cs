@@ -47,8 +47,9 @@ namespace BusinessLayer
         {
             IQueryable<Message> query = from message
                                         in db.Messages
-                                        where message.ToId == userID
+                                        where message.ToId == userID || message.FromId == userID
                                         select message;
+            query = query.OrderBy(o => o.Date);
             return query;
         }
 

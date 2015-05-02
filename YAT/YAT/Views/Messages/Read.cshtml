@@ -24,8 +24,9 @@
        @using (Html.BeginForm("Read", "Messages", FormMethod.Post))
        { 
             <input type="text" id="text" name="text"/>
+            <input type="hidden" id="hidden" name="hidden" value="1">
             <input type="submit" value="Send" class="btn btn-default" /> 
-        }
+       }
     <p>
         @Html.ActionLink("Back", "Index")
     </p>

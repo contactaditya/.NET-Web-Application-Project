@@ -19,7 +19,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img id="InboxPic" src=~/Pics/batman.jpg />
+            <img id="InboxPic" src=/Pics/@item.From/@item.From.Photo />
             @{
                 
                 @Html.DisplayFor(modelItem => item.From.FirstName)
