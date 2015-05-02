@@ -18,12 +18,13 @@ namespace YAT.Controllers
         public ActionResult UserProfile(string userID = "")
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
+            string getID = userID == "" ? User.Identity.GetUserId() : userID;
+            //var currentUser = manager.FindById(getID);
             var YATUser = new User();
 
             using (var dbContext = new YATContext())
             {
-               YATUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+               YATUser = dbContext.User.Where(p => p.Id.Contains(getID)).FirstOrDefault();
             }
 
             return View(YATUser); 

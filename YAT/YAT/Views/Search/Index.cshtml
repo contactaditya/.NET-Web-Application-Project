@@ -42,6 +42,7 @@
              
                 <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="/Pics/@Url.Content(item.Photo)" />  </a>
                 <span class="itemcenter">@("Last active:" + item.LastLoginDate.Date.ToString("d"))</span>
+                <span class="itemcenter">@("Zipcode:" + item.Address)</span>
                 @*@Html.Hidden("Id", @item.Id)*@
   
             </div>

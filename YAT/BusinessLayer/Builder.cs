@@ -229,7 +229,12 @@ namespace BusinessLayer
             string filteredUsers =
                 "SELECT u.ID from dbo.Users as u where " +
                  "u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
-              " and u.Gender = " + Convert.ToInt32(gender) + " and u.InterestedIn= " + Convert.ToInt32(InterestedIn) + " and u.Address = '" + address + "'";
+              " and u.Gender = " + Convert.ToInt32(gender) + " and u.InterestedIn= " + Convert.ToInt32(InterestedIn);
+
+            if (address!="") filteredUsers = filteredUsers+ " and u.Address = '" + address + "'";
+
+
+
                  string  defaultStr = "Select * from dbo.Users WHERE dbo.Users.ID in (" + filteredUsers + ")";
             //get the user's likes list, count the likes match for every result, and sort by top match
             using (var dbContext = new YATContext())
