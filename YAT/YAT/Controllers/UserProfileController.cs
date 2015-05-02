@@ -26,7 +26,13 @@ namespace YAT.Controllers
             //}
 
             return View(YATUser); 
-        } 
+        }
+
+        // GET: UserSettings
+        public ActionResult UserSettings()
+        {
+            return View();
+        }
  
     } 
 }
