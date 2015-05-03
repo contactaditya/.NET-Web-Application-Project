@@ -10,6 +10,7 @@ using YAT.Models;
 using BusinessLayer;
 using System.Data.Entity;
 using System.IO;
+using System.Net;
 namespace YAT.Controllers
 {
     public class UserProfileController : Controller
@@ -72,12 +73,26 @@ namespace YAT.Controllers
             }
             return RedirectToAction("UserSettings", "UserProfile");
         }
-    
+
+        // GET: /User/Edit
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.User.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "FirstName,LastName,Age,Gender,InterestedIn,Address")] User user)
+        public ActionResult Edit([Bind(Include = "FirstName,LastName,Age,Gender,InterestedIn,Address")] User user)
         {
             if (ModelState.IsValid)
             { 
