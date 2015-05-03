@@ -26,49 +26,7 @@
     </style>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript">
-        var map;
-        var geocoder;
 
-        function initialize() {
-            geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(-34.397, 150.644);
-            var mapOptions = {
-                zoom: 0,
-                center: latlng
-            }
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        }
-
-    function codeAddress()
-    {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({ 'address': address }, function (results, status)
-        {
-            if (status == google.maps.GeocoderStatus.OK)
-            {
-                var mapOptions = {
-                    zoom: 15,
-                    center: results[0].geometry.location,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                }
-                map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker
-                ({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-            }
-            else
-            {
-                alert("Geocode was not successful for the following reason: " + status);
-            }
-        });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
 </head>
 <body>
     <form method="post">
@@ -113,6 +71,10 @@
                         <label for="RegistrationDate">Registration Date:</label>
                           @currentUser.RegistrationDate.ToShortDateString() <br /> <br />
                         </div>
+                        <div>
+                            <label for="Address">Address:</label>
+                            @currentUser.Address <br /> <br />
+                        </div>
                         if (User.Identity.GetUserId() != @currentUser.Id)
                         { 
                         <div>
@@ -130,13 +92,15 @@
                          }
                         <div>
                         <h2> Like Section </h2> <br /> <br />
-                         <input id="address" type="text" value="@currentUser.Address" readonly>
-                         <input type="button" value="Get Location On Google Map" onclick="codeAddress()"> <br /> <br />
                         </div>
 
-                         <div id="map-canvas">
+                         <div>
+                             This is what the address looks like on Google Maps: <br/> <br/>
+
+                             <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCfd2VO8YTOEmmqdBr4FCl4GRbnarDbnK8&q=@currentUser.Address" width=" 600" height="450" frameborder="0" style="border:0"></iframe> <br /> <br/>
 
                          </div>
+                    
                     }
 }
             </fieldset>
