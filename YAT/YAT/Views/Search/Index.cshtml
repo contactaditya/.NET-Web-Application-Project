@@ -42,16 +42,10 @@ else
     @foreach (var item in Model)
     {
             <div class="productbox">
-
-                <h3 class="itemcenter">@(item.FirstName + ", " + item.Age)</h3>
-             
+                <h3 class="itemcenter">@(item.FirstName + ", " + item.Age)</h3>        
                 <a href=@("/UserProfile/UserProfile/?userID=" + item.Id)>   <img class="itemcenter"  src="/Pics/@Url.Content(item.Photo)" />  </a>
-                <span class="itemcenter">@("Last active:" + item.LastLoginDate.Date.ToString("d"))</span>
-                <span class="itemcenter">@("Zipcode:" + item.Address)</span>
-                @*@Html.Hidden("Id", @item.Id)*@
-  
+                <span class="itemcenter">@("Last active: " + item.LastLoginDate.Date.ToString("d"))</span>
+                <span class="itemcenter">@("Zipcode: " + item.Address)</span>
             </div>
-
      }
-
 </div>
