@@ -16,8 +16,8 @@ namespace BusinessLayer
 
             IQueryable<Message> query = ((from message
                          in db.Messages
-                         where message.ToId == userID && message.FromId == otherID
-                         select message)
+                                          where message.ToId == userID && message.FromId == otherID
+                                          select message)
                          .Union
                          (from message in db.Messages
                           where message.FromId == userID && message.ToId == otherID
@@ -56,17 +56,29 @@ namespace BusinessLayer
         //I add userID here since I am not sure how we want to do this, userID can be removed later maybe
         //But if we just run read every time a user clicks a message then we need it since if it is from them,
         //read should not be marked true...
-        public void read(string userID, int messageID) 
+        public void read(string userID, int messageID)
         {
-            IQueryable<Message> query = from message 
-                        in db.Messages 
-                        where message.Id == messageID && message.To.Id == userID 
-                        select message;
+            IQueryable<Message> query = from message
+                        in db.Messages
+                                        where message.Id == messageID && message.To.Id == userID
+                                        select message;
             //only one should exist
             foreach (Message message in query.ToList())
             {
                 message.Read = true;
                 db.SaveChanges();
+            }
+        }
+
+        public int getUnread(string id)
+        {
+            {
+
+                IQueryable<Message> query = from message
+                                            in db.Messages
+                                            where message.From.Id == id
+                                            select message;
+                return query.Count();
             }
         }
     }

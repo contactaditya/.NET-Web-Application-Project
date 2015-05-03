@@ -22,13 +22,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("View Profile", "UserProfile", "UserProfile")</li>
                         <li>@Html.ActionLink("Edit Profile", "UserSettings", "UserProfile")</li>
                         <li>@Html.ActionLink("Auto-Match", "Automatch", "Search")</li>
                         <li>@Html.ActionLink("Search", "Index", "Search")</li>
-                        <li>@Html.ActionLink("Messages", "Index", "Messages")</li>
+                        <li>@Html.ActionLink("Messages(" + new BusinessLayer.Messaging().getUnread(Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(User.Identity)) + ")", "Index", "Messages")</li>
                         <li>@Html.ActionLink("Analytics", "Index", "Analytics")</li>
                     }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
