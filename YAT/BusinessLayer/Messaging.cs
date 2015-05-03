@@ -76,7 +76,7 @@ namespace BusinessLayer
 
                 IQueryable<Message> query = from message
                                             in db.Messages
-                                            where message.From.Id == id
+                                            where message.To.Id == id && message.Read == false
                                             select message;
                 return query.Count();
             }
