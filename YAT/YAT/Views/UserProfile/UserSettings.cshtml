@@ -21,14 +21,14 @@
     <title>Edit Profile</title>
 </head>
 <body>
-    <form method="post">
-        <div class="text-center">
+   @using (Html.BeginForm("Edit", "UserProfile", FormMethod.Post))
+   {   <div class="text-center">
             <fieldset>
                 @{
-                    if (Request.IsAuthenticated)
-                    {
-                        var currentUser = (Model as DataLayer.User);
-
+       if (Request.IsAuthenticated)
+       {
+           var currentUser = (Model as DataLayer.User);
+            @Html.HiddenFor(model => model.Id)
                                 <legend>  This Page Is Meant To Edit The Profile of the User </legend>
                                 <div>
                                     <img src="https://placehold.it/512x384"> <br /> <br />
@@ -82,7 +82,8 @@
             </fieldset>
 
         </div>
-    </form>
+   }
+   
 </body>
 </html>
 

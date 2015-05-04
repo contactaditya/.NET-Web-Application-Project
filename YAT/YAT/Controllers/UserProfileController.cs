@@ -92,8 +92,8 @@ namespace YAT.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FirstName,LastName,Age,Gender,InterestedIn,Address")] User user)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, FirstName,LastName,Age,Gender,InterestedIn,Address")] User user)
         {
             if (ModelState.IsValid)
             { 
