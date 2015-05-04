@@ -227,8 +227,8 @@ namespace BusinessLayer
         {
             string qryStr;
             string filteredUsers =
-                "SELECT u.ID from dbo.Users as u where " +
-                 "u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
+                "SELECT u.ID from dbo.Users as u where u.Deleted=0 " +
+                 " and u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
               " and u.Gender = " + Convert.ToInt32(gender) + " and u.InterestedIn= " + Convert.ToInt32(InterestedIn);
 
             if (address!="") filteredUsers = filteredUsers+ " and u.Address = '" + address + "'";

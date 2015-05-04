@@ -28,7 +28,7 @@ else
     <input class="smallBox" name="maxAge" type="number" min="18" max="100" value=@ViewBag.maxAge />
 
     <p1>Zipcode:</p1>
-    <input class ="ZipBox" name="address" type="text" max="99999" value=@ViewBag.address />
+    <input class="ZipBox" name="address" type="number" max="99999" value=@ViewBag.address />
     <p1> Sort by:</p1>
     @Html.DropDownList("sortVal", new SelectList(ViewBag.sortOptions))
         

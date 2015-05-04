@@ -42,7 +42,7 @@ namespace YAT.Controllers
             {
                 gender = currentUser.Gender;
                 address = currentUser.Address;
-                InterestedIn =(currentUser.InterestedIn==false)?"Men":"Women";;
+                InterestedIn =(currentUser.InterestedIn==true)?"Men":"Women";;
             }
 
             List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: gender, InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
@@ -59,7 +59,7 @@ namespace YAT.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(int minAge, int maxAge, string FindGender, string InterestedIn, string sortVal, string address)
+        public ActionResult Index(int? minAge, int? maxAge, string FindGender, string InterestedIn, string sortVal, string address)
         {
             Builder b = new Builder();
             UserSort sortBy;
@@ -74,11 +74,12 @@ namespace YAT.Controllers
             default: sortBy=UserSort.Match;
                  break;  
             }
-
-            List<User> users = b.queryUsers(minAge: minAge, maxAge: maxAge, gender: FindGender == "Men", InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
+            int MIN_AGE = (minAge == null) ? 18 : Convert.ToInt32(minAge);
+            int MAX_AGE = (maxAge == null) ? 120 : Convert.ToInt32(maxAge);
+            List<User> users = b.queryUsers(minAge: MIN_AGE, maxAge: MAX_AGE, gender: FindGender == "Men", InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: sortBy);
             ViewBag.minAge = minAge;
             ViewBag.maxAge = maxAge;
-            ViewBag.address = address;
+            ViewBag.address = (address=="")?null :address;
             ViewBag.sortOptions = SortOptions;
             ViewBag.InterestedIn = InterestedIn;
             ViewBag.FindGender = FindGender;
