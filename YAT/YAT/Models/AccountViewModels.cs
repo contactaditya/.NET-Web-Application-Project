@@ -8,6 +8,20 @@ namespace YAT.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public int Age { get; set; }
+        [Required]
+        public bool Gender { get; set; }
+        [Required]
+        [StringLength(5, MinimumLength = 5)]
+        public string Address { get; set; }
+        [Required]
+        public bool InterestedIn { get; set; }
     }
 
     public class ExternalLoginListViewModel

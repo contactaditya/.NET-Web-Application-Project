@@ -74,7 +74,8 @@ namespace YAT.Controllers
             return RedirectToAction("UserSettings", "UserProfile");
         }
 
-        // GET: /User/Edit
+        // GET: /UserSettings/Edit
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +99,7 @@ namespace YAT.Controllers
             { 
                     db.Entry(user).State = EntityState.Modified;
                     db.SaveChanges();
+                    return RedirectToAction("UserSettings");
             }
             return View(user);
         }
@@ -120,6 +122,6 @@ namespace YAT.Controllers
  
     } 
 
-    }
+ }
 
 

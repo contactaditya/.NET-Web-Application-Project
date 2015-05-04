@@ -19,15 +19,21 @@ namespace DataLayer
 
         [Key]
         public string Id { get; set; }
+        [Required]
         public string Address { get; set; }
         [MinLength(1), MaxLength(30)]
+        [Required]
         public string FirstName { get; set; }
         [MinLength(1), MaxLength(30)]
+        [Required]
         public string LastName { get; set; }
+        [Required]
         public int Age { get; set; }
+        [Required]
         public bool Gender { get; set; }
         public string Photo { get; set; }
         public bool Deleted { get; set; }
+        [Required]
         public bool InterestedIn { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime LastLoginDate { get; set; }

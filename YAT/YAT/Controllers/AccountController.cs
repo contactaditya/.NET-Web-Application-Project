@@ -169,7 +169,7 @@ namespace YAT.Controllers
                     using(var dbContext = new YATContext())
                     {
                         var YATuser = new User
-                        {
+                        {  
                             Id=user.Id,
                             FirstName = model.FirstName,
                             LastName = model.LastName,
@@ -398,6 +398,25 @@ namespace YAT.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        using (var dbContext = new YATContext())
+                        {
+                            var YATuser = new User
+                            {
+                                Id = user.Id,
+                                FirstName = model.FirstName,
+                                LastName = model.LastName,
+                                Age = model.Age,
+                                Gender = model.Gender,
+                                Address = model.Address,
+                                InterestedIn = model.InterestedIn,
+                                Deleted = false,
+
+                                RegistrationDate = DateTime.Now,
+                                LastLoginDate = DateTime.Now,
+                            };
+                            dbContext.User.Add(YATuser);
+                            dbContext.SaveChanges();
+                        }
                         return RedirectToLocal(returnUrl);
                     }
                 }

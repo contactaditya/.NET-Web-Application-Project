@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DataLayer.User
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,8 +13,6 @@
 @using YAT.Models;
 @using DataLayer;
 @using System.Data.Entity;
-
-
 
 <h2>User Settings</h2>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
                                 <div>
                                     <label for="file">Click Here To Upload Your Profile Picture:</label>
                                     <input type="file" name="file" id="file"/> <br /> <br />
-                                    <input type="submit" value="Upload" class="submit" /> <br/> <br/>
+                                    <input type="submit" value="Upload" class="btn btn-default" /> <br/> <br/>
                                     <img src=/Pics/@currentUser.Id/@currentUser.Photo /> <br/> <br/>
                                 </div>
                                 <div>
@@ -74,10 +74,10 @@
                                     <input type="submit" value="Save" class="btn btn-default" /> <br /> <br />
                                 </div>
                                 <div>
-                                @Html.ActionLink("Back to List", "Index")
+                                @Html.ActionLink("Back to List", "UserSettings")
                                 </div>
                     }
-}
+            }
 
             </fieldset>
 
