@@ -22,19 +22,23 @@
 
 </head>
 <body>
-   
-        <div class="text-left">
+        <div class="text-center">
             <fieldset>
                 @{
                     if (Request.IsAuthenticated)
                     {
                         var currentUser = (Model as DataLayer.User);
-                        <legend>  Introducing... </legend>
+                        <legend>  This Page Contains The Details Of The User </legend>
                         <div>
-                            <img src="/Pics/@Url.Content(currentUser.Photo)"> <br /> <br />
-                          
+                            <img src="~/Pics/@Model.Photo"> <br /> <br />
                         </div>
                          <div>
+                             @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
+                             {
+                                 <input type="text" id="text" name="text" />
+                                 <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
+                                 <input type="submit" value="Message" class="btn btn-default" />
+                             }
                         <label for="FirstName">First Name:</label>
                          @currentUser.FirstName <br /> <br />
                         </div>
@@ -92,13 +96,8 @@
             </fieldset>
 
         </div>
-    
-    @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
-    {
-        <input type="text" id="text" name="text" />
-        <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
-        <input type="submit" value="Message" class="btn btn-default" />
-    }
+   
+
 </body>
 </html>
 
