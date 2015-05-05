@@ -21,7 +21,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img id="InboxPic" src=/Pics/@item.From/@item.From.Photo />
+            <a href=@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/UserProfile/UserProfile/?userID=" + @item.FromId)>
+                <img id="InboxPic" src=/Pics/@item.From.Photo />
+            </a>
             @{
                 @Html.DisplayFor(modelItem => item.From.FirstName)
             }
