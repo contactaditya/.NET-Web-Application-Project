@@ -281,10 +281,12 @@
     <Content Include="Pics\joker.jpg" />
     <Content Include="Pics\male.jpg" />
     <Content Include="Pics\superman.jpg" />
+    <Content Include="Scripts\ageRank.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\d3.layout.cloud.js" />
     <Content Include="Scripts\d3.min.js" />
+    <Content Include="Scripts\datamaps.usa.min.js" />
     <Content Include="Scripts\genderCount.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -302,6 +304,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\stateCount.js" />
+    <Content Include="Scripts\topojson.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Styles\MessagingStyle.css" />
     <Content Include="Web.config">

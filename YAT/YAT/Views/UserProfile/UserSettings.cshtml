@@ -70,7 +70,7 @@
                                     <input type="submit" value="Save" class="btn btn-default" /> <br /> <br />
                                 </div>
                                 <div>
-                                @Html.ActionLink("Back to List", "UserSettings")
+                                @Html.ActionLink("Back to List", "UserSettings") <br /> <br />
                                 </div>
                     }
             }
@@ -81,15 +81,17 @@
    }
 
     <div class="text-center">
+        <label for="UploadImage"> Upload Image: </label> <br /> <br />
+            @using (Html.BeginForm("FileUpload", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
 
-        @using (Html.BeginForm("FileUpload", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <label for="file">Upload Image:</label>
-            <input type="file" name="file" id="file" style="width: 100%;" />
-            <input type="submit" value="Upload" class="btn btn-default" />
-        }
+                <label for="file">
+                    <input type="file" name="file" id="file" style="width: 100%;" /> <br />
+                    <input type="submit" value="Upload" class="btn btn-default" />
+                </label>
+            }
 
-    </div>
+</div>
 
 </body>
 </html>
