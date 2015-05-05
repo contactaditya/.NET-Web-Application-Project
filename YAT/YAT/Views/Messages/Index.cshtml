@@ -29,7 +29,7 @@
             }
         </td>
         <td>
-            <a href=@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/UserProfile/UserProfile/?userID =" + @item.ToId)>
+            <a href=@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/UserProfile/UserProfile/?userID=" + @item.ToId)>
                 <img id="InboxPic" src=/Pics/@item.To.Photo />
             </a>
             @{

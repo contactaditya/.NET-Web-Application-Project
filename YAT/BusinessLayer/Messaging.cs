@@ -29,18 +29,20 @@ namespace BusinessLayer
 
         public void sendMessage(string toID, string fromID, string textToSend)
         {
-
-            var message = new Message
+            if (!isBlocked(toID, fromID))
             {
-                Date = DateTime.Now,
-                Text = textToSend,
-                FromId = fromID,
-                ToId = toID,
-                Read = false
-            };
+                var message = new Message
+                {
+                    Date = DateTime.Now,
+                    Text = textToSend,
+                    FromId = fromID,
+                    ToId = toID,
+                    Read = false
+                };
 
-            db.Messages.Add(message);
-            db.SaveChanges();
+                db.Messages.Add(message);
+                db.SaveChanges();
+            }
         }
 
         public IQueryable<Message> getInbox(string userID)
@@ -68,6 +70,16 @@ namespace BusinessLayer
                 message.Read = true;
                 db.SaveChanges();
             }
+        }
+
+        public bool isBlocked(string id1, string id2)
+        {
+
+            if (db.Connections.Any(o => ((o.FromId.Equals(id1) && o.ToId.Equals(id2)) || (o.FromId.Equals(id2) && o.ToId.Equals(id1))) && o.IsBlocked))
+            {
+                return true;
+            }
+            return false;
         }
 
         public int getUnread(string id)
