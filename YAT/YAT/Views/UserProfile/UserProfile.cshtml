@@ -30,7 +30,7 @@
                         var currentUser = (Model as DataLayer.User);
                         <legend>  This Page Contains The Details Of The User </legend>
                         <div>
-                            <img src="~/Pics/@Model.Photo"> <br /> <br />
+                            <img id ="bigPic" src="/Pics/@Model.Photo"> <br /> <br />
                         </div>
                          <div>
                              @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))

@@ -52,11 +52,14 @@
   
 }
 
-hr {   /*fixes footer*/
-  clear:left
+
+.bigPic {
+    max-width:450px;
+    max-height:400px;
+    width: auto;
+    height: auto;
+    /*display: block;*/
 }
-
-
 /*Paul Changes to the navbar*/
 .navbar-inverse {
   background-color: #A40E6D;
