@@ -29,6 +29,8 @@
        {
            var currentUser = (Model as DataLayer.User);
             @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.LastLoginDate)
+            @Html.HiddenFor(model => model.RegistrationDate)
                                 <legend>  This Page Is Meant To Edit The Profile of the User </legend>
                                 <div>
                                     <img src="https://placehold.it/512x384"> <br /> <br />
