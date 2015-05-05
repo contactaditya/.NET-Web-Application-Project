@@ -52,6 +52,9 @@
   
 }
 
+hr {   /*fixes footer*/
+  clear:left
+}
 
 .bigPic {
     max-width:450px;

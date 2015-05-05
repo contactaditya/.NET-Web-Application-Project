@@ -226,10 +226,11 @@ namespace BusinessLayer
         public List<User> queryUsers(int minAge, int maxAge, bool gender, bool InterestedIn, string address, string SearcherID, UserSort sortBy)
         {
             string qryStr;
+            string excludeQry = "select ToID from dbo.Connections where FromID ='" + SearcherID + "' and (isRemoved=1 or isBlocked=1)";
             string filteredUsers =
                 "SELECT u.ID from dbo.Users as u where u.Deleted=0 " +
                  " and u.ID!='" + SearcherID + "' and u.Age >=" + minAge + " and u.Age<=" + maxAge +
-              " and u.Gender = " + Convert.ToInt32(gender) + " and u.InterestedIn= " + Convert.ToInt32(InterestedIn);
+              " and u.Gender = " + Convert.ToInt32(gender) + " and u.InterestedIn= " + Convert.ToInt32(InterestedIn) +" and u.ID not in (" + excludeQry +")";
 
             if (address!="") filteredUsers = filteredUsers+ " and u.Address = '" + address + "'";
 
