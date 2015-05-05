@@ -19,15 +19,32 @@ namespace YAT.Controllers
         public ActionResult UserProfile(string userID = "")
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+           
             string getID = userID == "" ? User.Identity.GetUserId() : userID;
+            string currentUser = User.Identity.GetUserId();
             //var currentUser = manager.FindById(getID);
             var YATUser = new User();
-
+            Connections conn = new Connections();
             using (var dbContext = new YATContext())
             {
                YATUser = dbContext.User.Where(p => p.Id.Contains(getID)).FirstOrDefault();
+               conn=  dbContext.Connections.Where(o => o.FromId == currentUser && o.ToId == getID).FirstOrDefault();
             }
 
+            //Disable hide and blocked buttons if already hidden or blocked
+            
+
+
+            if (conn !=null)
+            {
+                ViewBag.Blocked = conn.IsBlocked;
+                ViewBag.Hidden = conn.IsRemoved;
+            }
+            else
+            {
+                ViewBag.Blocked = false;
+                ViewBag.Hidden = false;
+            }
             return View(YATUser); 
         }
 
@@ -119,7 +136,45 @@ namespace YAT.Controllers
             msging.sendMessage(hidden, fromUser.Id, text);
             return Redirect(Url.Content("~/Messages"));
         }
- 
+        [HttpPost]
+        public ActionResult UpdateConnection(string buttonName, string ToUser)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+          //  var currentUser = manager.FindById(User.Identity.GetUserId());
+            var currentUser = User.Identity.GetUserId();
+          //  User fromUser;
+
+            //using (var dbContext = new YATContext())
+            //{
+            //    fromUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            //}
+          //  var user = db.User.Find(ToUser);
+            //check if connection entry exists for the 2 users
+               Connections conn = new Connections();
+          //  if (db.Connections.Any(o => o.FromId == currentUser && o.ToId==ToUser ))
+           conn=  db.Connections.Where(o => o.FromId == currentUser && o.ToId == ToUser).FirstOrDefault();
+            if (conn!=null)
+            {
+                if (buttonName == "Block" )
+                    conn.IsBlocked = true;
+                else
+                    conn.IsRemoved=true;   
+            }
+            else //create new entry
+            {
+              Connections conn2 = new Connections()
+                {
+                    ToId = ToUser,
+                    FromId = currentUser,
+                    IsBlocked = (buttonName == "Block") ? true : false,
+                    IsRemoved = (buttonName == "Hide") ? true : false
+                };
+                db.Connections.Add(conn2);
+            }
+                db.SaveChanges();
+
+            return RedirectToAction("UserProfile", new { userID = ToUser });
+        }
     } 
 
  }
