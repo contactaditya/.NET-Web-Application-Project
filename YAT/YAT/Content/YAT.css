@@ -21,7 +21,6 @@
      white-space:nowrap;
 }
 
-
 .itemcenter {
     white-space:nowrap;
     padding:  10px;
@@ -36,11 +35,13 @@
     margin:auto;
 
 }
+
 .smallBox
 {
    width: 60px ;
    text-align:right;
 }
+
 .ZipBox
 {
    width: 60px ;
@@ -63,6 +64,7 @@ hr {
     height: auto;
     /*display: block;*/
 }
+
 /*Paul Changes to the navbar*/
 .navbar-inverse {
   background-color: #A40E6D;
@@ -183,6 +185,7 @@ hr {
   color: #ffffff;
 }
 
+/*Analytics*/
 svg {
   font: 10px sans-serif;
 }
@@ -200,9 +203,26 @@ svg {
   stroke: steelblue;
   stroke-width: 1.5px;
 }
-
 .center-block {
   display:block;
   margin-left:auto;
   margin-right:auto;
+}
+.bar {
+  fill: steelblue;
+}
+.bar:hover {
+  fill: blue;
+}
+.axis {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.x.axis path {
+  display: none;
 }
