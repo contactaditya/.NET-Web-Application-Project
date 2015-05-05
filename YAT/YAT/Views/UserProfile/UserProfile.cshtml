@@ -30,16 +30,15 @@
                         var currentUser = (Model as DataLayer.User);
                         <legend>  This Page Contains The Details Of The User </legend>
                         <div>
-                            @if(@currentUser.Gender.Equals(true))
-                            {
-                            <img src="~/Pics/male.jpg"> <br /> <br />
-                            }
-                            else
-                            {
-                            <img src="~/Pics/female.jpg"> <br /> <br />
-                            }
+                            <img src="~/Pics/@Model.Photo"> <br /> <br />
                         </div>
                          <div>
+                             @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
+                             {
+                                 <input type="text" id="text" name="text" />
+                                 <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
+                                 <input type="submit" value="Message" class="btn btn-default" />
+                             }
                         <label for="FirstName">First Name:</label>
                          @currentUser.FirstName <br /> <br />
                         </div>
@@ -98,12 +97,7 @@
 
         </div>
    
-    @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
-    {
-        <input type="text" id="text" name="text" />
-        <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
-        <input type="submit" value="Message" class="btn btn-default" />
-    }
+
 </body>
 </html>
 
