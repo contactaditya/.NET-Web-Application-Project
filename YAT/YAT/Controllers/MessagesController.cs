@@ -15,6 +15,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace YAT.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private YATContext db = new YATContext();

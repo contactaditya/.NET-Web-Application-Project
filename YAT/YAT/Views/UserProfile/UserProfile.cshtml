@@ -22,7 +22,7 @@
 
 </head>
 <body>
-    <form method="post">
+   
         <div class="text-left">
             <fieldset>
                 @{
@@ -92,7 +92,7 @@
             </fieldset>
 
         </div>
-    </form>
+    
     @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
     {
         <input type="text" id="text" name="text" />
