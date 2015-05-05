@@ -178,9 +178,10 @@ namespace YAT.Controllers
                             Address = model.Address,
                             InterestedIn = model.InterestedIn,
                             Deleted = false,
-
+                            Photo = (model.Gender == true) ? "male.jpg" : "female.jpg",
                             RegistrationDate = DateTime.Now,
                             LastLoginDate = DateTime.Now,
+                            
                         };
                         dbContext.User.Add(YATuser);
                         dbContext.SaveChanges();
@@ -410,7 +411,7 @@ namespace YAT.Controllers
                                 Address = model.Address,
                                 InterestedIn = model.InterestedIn,
                                 Deleted = false,
-
+                                Photo=(model.Gender==true)?"male.jpg":"female.jpg",
                                 RegistrationDate = DateTime.Now,
                                 LastLoginDate = DateTime.Now,
                             };

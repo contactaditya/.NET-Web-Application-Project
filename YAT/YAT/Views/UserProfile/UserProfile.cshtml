@@ -23,22 +23,16 @@
 </head>
 <body>
     <form method="post">
-        <div class="text-center">
+        <div class="text-left">
             <fieldset>
                 @{
                     if (Request.IsAuthenticated)
                     {
                         var currentUser = (Model as DataLayer.User);
-                        <legend>  This Page Contains The Details Of The User </legend>
+                        <legend>  Introducing... </legend>
                         <div>
-                            @if(@currentUser.Gender.Equals(true))
-                            {
-                            <img src="~/Pics/male.jpg"> <br /> <br />
-                            }
-                            else
-                            {
-                            <img src="~/Pics/female.jpg"> <br /> <br />
-                            }
+                            <img src="/Pics/@Url.Content(currentUser.Photo)"> <br /> <br />
+                          
                         </div>
                          <div>
                         <label for="FirstName">First Name:</label>
