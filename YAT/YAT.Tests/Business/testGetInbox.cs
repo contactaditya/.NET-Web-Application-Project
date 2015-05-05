@@ -28,7 +28,7 @@ namespace YAT.Tests.Business
             var inbox = msging.getInbox(mike.Id);
 
             foreach (Message m in inbox){
-                Assert.AreEqual(m.ToId, mike.Id);
+                Assert.IsTrue((m.ToId == mike.Id || m.FromId == mike.Id));
             }
         }
     }

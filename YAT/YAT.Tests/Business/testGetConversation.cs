@@ -26,9 +26,9 @@ namespace YAT.Tests.Business
 
             var mikeSueConvo = msging.getConversation(mike.Id, sue.Id).ToList();
 
-            Assert.AreEqual(mikeSueConvo[0], "Hi there");
-            Assert.AreEqual(mikeSueConvo[1], "Hello");
-            Assert.AreEqual(mikeSueConvo[2], "wanna go program some tests??!?!!");
+            Assert.AreEqual(mikeSueConvo.ToList()[0].Text, "Hi there");
+            Assert.AreEqual(mikeSueConvo.ToList()[1].Text, "Hello");
+            Assert.AreEqual(mikeSueConvo.ToList()[2].Text, "wanna go program some tests??!?!!");
             Assert.AreEqual(mikeSueConvo.Count, 3);
 
         }
@@ -52,15 +52,15 @@ namespace YAT.Tests.Business
 
             var mikeSueConvo = msging.getConversation(mike.Id, sue.Id).ToList();
 
-            Assert.AreEqual(mikeSueConvo[0], "Hi there");
-            Assert.AreEqual(mikeSueConvo[1], "Hello");
-            Assert.AreEqual(mikeSueConvo[2], "wanna go program some tests??!?!!");
+            Assert.AreEqual(mikeSueConvo.ToList()[0].Text, "Hi there");
+            Assert.AreEqual(mikeSueConvo.ToList()[1].Text, "Hello");
+            Assert.AreEqual(mikeSueConvo.ToList()[2].Text, "wanna go program some tests??!?!!");
 
             var sueMikeConvo = msging.getConversation(sue.Id, mike.Id).ToList();
 
-            Assert.AreEqual(mikeSueConvo[0], sueMikeConvo[0]);
-            Assert.AreEqual(mikeSueConvo[1], sueMikeConvo[1]);
-            Assert.AreEqual(mikeSueConvo[2], sueMikeConvo[2]); 
+            Assert.AreEqual(mikeSueConvo.ToList()[0].Text, sueMikeConvo.ToList()[0].Text);
+            Assert.AreEqual(mikeSueConvo.ToList()[1].Text, sueMikeConvo.ToList()[1].Text);
+            Assert.AreEqual(mikeSueConvo.ToList()[2].Text, sueMikeConvo.ToList()[2].Text); 
             Assert.AreEqual(mikeSueConvo.Count, 3);
             Assert.AreEqual(sueMikeConvo.Count, 3);
 

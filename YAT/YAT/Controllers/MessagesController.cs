@@ -74,12 +74,23 @@ namespace YAT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            User user;
+            using (var dbContext = new YATContext())
+            {
+                user = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
+            }
+            string userid = user.Id;
             Message message = db.Messages.Find(id);
             Messaging msging = new Messaging();
             var messages = msging.getConversation(message.To.Id, message.From.Id).ToList();
             foreach (Message mess in messages)
             {
-                msging.read(mess.To.Id, mess.Id);
+                if (mess.ToId.Equals(userid)) 
+                { 
+                    msging.read(mess.To.Id, mess.Id);
+                }
             }
             if (message == null)
             {
