@@ -14,7 +14,6 @@ var map = new Datamap({
     data: stateData,
     geographyConfig: {
         popupTemplate: function (geo, data) {
-            console.log(2222)
             if (data == null) {
                 data = { "users": 0 }
             }

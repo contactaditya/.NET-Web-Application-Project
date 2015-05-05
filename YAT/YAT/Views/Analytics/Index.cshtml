@@ -45,10 +45,17 @@ Results as of @DateTime.Now.ToString()
 
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                @if (@item.name)
+                {
+                    <span>Male</span>
+                }
+                else
+                {
+                    <span>Female</span>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.value)
+                @item.value
             </td>
         </tr>
     }
