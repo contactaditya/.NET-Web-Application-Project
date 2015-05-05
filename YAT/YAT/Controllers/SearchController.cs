@@ -30,22 +30,22 @@ namespace YAT.Controllers
             Builder b = new Builder();
             User currentUser = b.getCurrentUser(User.Identity.GetUserId());
             string address;
-            string InterestedIn;
+            bool InterestedIn;
             bool gender;
             if (currentUser == null)
             {//set default values for Identity-YAT unsynced test user
                 address = "94104";
-                InterestedIn = "Women";
+                InterestedIn = true;
                 gender = true;
             }
             else
             {
                 gender = currentUser.Gender;
                 address = currentUser.Address;
-                InterestedIn =(currentUser.InterestedIn==true)?"Men":"Women";;
+                InterestedIn = currentUser.InterestedIn;
             }
 
-            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: gender, InterestedIn: InterestedIn == "Men", address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: InterestedIn, InterestedIn: gender, address: address, SearcherID: User.Identity.GetUserId(), sortBy: 0);
             ViewBag.minAge =20;
             ViewBag.maxAge = 35;
             ViewBag.address = address;
