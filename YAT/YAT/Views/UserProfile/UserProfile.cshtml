@@ -32,16 +32,32 @@
                         <div>
                             <img id ="bigPic" src="/Pics/@Model.Photo"> <br /> <br />
                         </div>
-                         <div>
-                             @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
-                             {
-                                 <input type="text" id="text" name="text" />
-                                 <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
-                                 <input type="submit" value="Message" class="btn btn-default" />
-                             }
-                        <label for="FirstName">First Name:</label>
-                         @currentUser.FirstName <br /> <br />
-                        </div>
+                        if (User.Identity.GetUserId() != @currentUser.Id)
+                        {
+                            <div>
+                                <label>&nbsp;</label>
+                            </div>
+                            <div>
+                                @using (Html.BeginForm("SendMessage", "UserProfile", FormMethod.Post))
+                                {
+                                    <input type="text" id="text" name="text" />
+                                    <input type="hidden" id="hidden" name="hidden" value=@Model.Id>
+                                    <input type="submit" value="Message" class="btn btn-default" />
+                                }
+                            </div>
+                            <div>
+                                <label>&nbsp;</label>
+                                <input type="submit" value="Block" class="btn btn-default" /> <br /> <br />
+                            </div>
+                            <div>
+                                <label>&nbsp;</label>
+                                <input type="submit" value="Hide" class="btn btn-default" /> <br /> <br />
+                            </div>
+                        }
+                             <div>
+                                 <label for="FirstName">First Name:</label>
+                                 @currentUser.FirstName <br /> <br />
+                             </div>
                          <div>
                          <label for="LastName">Last Name:</label>
                           @currentUser.LastName <br /> <br />
@@ -65,21 +81,7 @@
                         <div>
                             <label for="Address">Zip Code:</label>
                             @currentUser.Address <br /> <br />
-                        </div>
-                        if (User.Identity.GetUserId() != @currentUser.Id)
-                        { 
-                        <div>
-                            <label>&nbsp;</label>
-                        </div> 
-                        <div>
-                        <label>&nbsp;</label>
-                            <input type="submit" value="Block" class="btn btn-default" /> <br /> <br />
-                        </div>
-                        <div>
-                        <label>&nbsp;</label>
-                            <input type="submit" value="Hide" class="btn btn-default" /> <br /> <br />
-                        </div>
-                         }
+                        </div>                        
                         <div>
                         <h2> Like Section </h2> <br /> <br />
                         </div>
