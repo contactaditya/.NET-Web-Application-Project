@@ -7,7 +7,7 @@
     <title></title>
     <link href="@Url.Content("~/Styles/MessagingStyle.css")" rel="stylesheet" type="text/css" />
 </head>
-<h2>Conversation Between @(Model.ElementAt(0).From.FirstName) and Me</h2>
+<h2>Conversation Between @(Model.ElementAt(0).From.FirstName) and @(Model.ElementAt(0).To.FirstName)</h2>
 
 <table class="table">
 @foreach (var item in Model)
