@@ -13,7 +13,7 @@ using YAT.Models;
 
 namespace YAT.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AnalyticsController : Controller
     {
         private Analytics business = new Analytics();
