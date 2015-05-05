@@ -14,9 +14,11 @@
 {
     <tr>
             <td>
-                <img id="InboxPic" src=~/Pics/@item.From.Photo />
-                @(item.From.FirstName + ":\n")
-                @Html.DisplayFor(modelItem => item.Text)
+                <a href=@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/UserProfile/UserProfile/?userID=" + @item.FromId)>
+                    <img id="InboxPic" src=~/Pics/@item.From.Photo />
+                 </a>
+                 @(item.From.FirstName + ":\n")
+                 @Html.DisplayFor(modelItem => item.Text)
             </td>
     </tr>
 }
