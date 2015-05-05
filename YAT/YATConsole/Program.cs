@@ -19,7 +19,8 @@ namespace YATConsole
             Builder b = new Builder();
 
             //Test searching users
-            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, address: "11791", SearcherID: "1", sortBy: sortby);
+    
+            List<User> users = b.queryUsers(minAge: 20, maxAge: 30, gender: true, InterestedIn: false, address: "", SearcherID: "1", sortBy: 0);
             foreach (User user in users)
             {
                 Console.WriteLine(user.FirstName + " " + user.LastName);
