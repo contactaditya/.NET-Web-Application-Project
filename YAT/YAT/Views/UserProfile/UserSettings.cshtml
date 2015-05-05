@@ -33,14 +33,8 @@
             @Html.HiddenFor(model => model.RegistrationDate)
                                 <legend>  This Page Is Meant To Edit The Profile of the User </legend>
                                 <div>
-                                    <img src="/Pics/@Url.Content(currentUser.Photo)"> <br /> <br /><br /> <br />
+                                    <img src="/Pics/@currentUser.Photo"> <br /> <br /><br /> <br />
                                </div>
-                                <div>
-                                    <label for="file">Click Here To Upload Your Profile Picture:</label>
-                                    <input type="file" name="file" id="file"/> <br /> <br />
-                                    <input type="submit" value="Upload" class="btn btn-default" /> <br/> <br/>
-                                    <img src=/Pics/@currentUser.Id/@currentUser.Photo /> <br/> <br/>
-                                </div>
                                 <div>
                                     <label for="FirstName">First Name:</label>
                                     <input type="text" name="FirstName" value="@currentUser.FirstName" /> <br /> <br />
@@ -85,6 +79,12 @@
 
         </div>
    }
+    @using (Html.BeginForm("FileUpload", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        <input type="submit" value="Upload" class="submit" />
+    }
    
 </body>
 </html>
