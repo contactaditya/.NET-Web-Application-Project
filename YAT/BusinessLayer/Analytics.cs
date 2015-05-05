@@ -106,12 +106,16 @@ namespace BusinessLayer
                 SortedDictionary<String, int> stateCount = new SortedDictionary<String, int>();
                 foreach (var row in rows)
                 {
-                    if (stateCount.Keys.Contains(zipStates[row.name]))
+                    if (zipStates.Keys.Contains(row.name))
                     {
-                        stateCount[zipStates[row.name]] += row.value;
-                    }
-                    else{
-                        stateCount[zipStates[row.name]] = row.value;
+                        if (stateCount.Keys.Contains(zipStates[row.name]))
+                        {
+                            stateCount[zipStates[row.name]] += row.value;
+                        }
+                        else
+                        {
+                            stateCount[zipStates[row.name]] = row.value;
+                        }
                     }
                 }
                 var newRows = from entry in stateCount 
