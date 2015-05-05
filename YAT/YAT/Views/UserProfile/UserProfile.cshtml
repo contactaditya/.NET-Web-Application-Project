@@ -63,7 +63,7 @@
                           @currentUser.RegistrationDate.ToShortDateString() <br /> <br />
                         </div>
                         <div>
-                            <label for="Address">Address:</label>
+                            <label for="Address">Zip Code:</label>
                             @currentUser.Address <br /> <br />
                         </div>
                         if (User.Identity.GetUserId() != @currentUser.Id)
@@ -85,7 +85,7 @@
                         </div>
 
                          <div>
-                             <label> This is what the address looks like on Google Maps: </label> <br/> <br/>
+                             <label> This is what the zip code looks like on Google Maps: </label> <br/> <br/>
 
                              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCfd2VO8YTOEmmqdBr4FCl4GRbnarDbnK8&q=@currentUser.Address" width=" 600" height="450" frameborder="0" style="border:0"></iframe> <br /> <br/>
 
