@@ -54,7 +54,7 @@
 }
 
 hr {
-    display:clear;
+    clear:left;
 }
 
 .bigPic {
