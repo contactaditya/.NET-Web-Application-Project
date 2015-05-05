@@ -3,14 +3,27 @@
 }
 <h2>@ViewBag.Title</h2>
 
+<div id="movieRank"></div>
+<div id="genderCount"></div>
+<div id="ageRank"></div>
+<div id="registrationMonths"></div>
+<div id="stateCount"></div>
+
 <script>
     var movieRank          = JSON.parse('@Html.Raw(Json.Encode(ViewData["movieRank"]))');
-    var genderCount        = JSON.parse('@Html.Raw(Json.Encode(ViewData["genderCount"]))');
+    console.log(JSON.stringify(movieRank))
+    var genderCount = JSON.parse('@Html.Raw(Json.Encode(ViewData["genderCount"]))');
     var ageRank            = JSON.parse('@Html.Raw(Json.Encode(ViewData["ageRank"]))');
     var registrationMonths = JSON.parse('@Html.Raw(Json.Encode(ViewData["registrationMonths"]))');
     var stateCount         = JSON.parse('@Html.Raw(Json.Encode(ViewData["stateCount"]))');
 </script>
+<script src="~/Scripts/d3.min.js"></script>
+<script src="~/Scripts/d3.layout.cloud.js"></script>
+<script src="~/Scripts/movieRank.js"></script>
+<script src="~/Scripts/registrationMonths.js"></script>
+<script src="~/Scripts/genderCount.js"></script>
 
+Results as of @DateTime.Now.ToString()
 <table>
     <tr>
         <th colspan="2">Movie Ranks</th>
@@ -97,16 +110,3 @@
     }
 </table>
 
-
-@using (Html.BeginForm("FileUpload", "Analytics", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <label for="file">Upload Image:</label>
-    <input type="file" name="file" id="file" style="width: 100%;" />
-    <input type="submit" value="Upload" class="submit" />
-}
-
-@using DataLayer;
-@{
-    var user = (Model as DataLayer.User);
-    <img src=/Pics/@user.Photo />
-}

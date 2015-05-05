@@ -19,6 +19,7 @@ namespace YAT.Controllers
         private Analytics business = new Analytics();
         private Users users = new Users();
 
+        [OutputCache(Duration=20)]
         public ActionResult Index()
         {
             ViewBag.Message = "This is the analytics page.";
@@ -29,42 +30,7 @@ namespace YAT.Controllers
             ViewData["registrationMonths"] = business.registrationMonths();
             ViewData["stateCount"]         = business.stateCount();
             
-            User YATUser = new User();
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            using (var dbContext = new YATContext())
-            {
-                YATUser = dbContext.User.Where(p => p.Id.Contains(currentUser.Id)).FirstOrDefault();
-            }
-            return View(YATUser);
-        }
-
-        public ActionResult FileUpload(HttpPostedFileBase file)
-        {
-            if (file != null)
-            {
-                using (var dbContext = new YATContext())
-                {
-                    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                    var currentUser = manager.FindById(User.Identity.GetUserId());
-                    var YATUser = dbContext.User.Where(p => p.Id.Equals(currentUser.Id)).FirstOrDefault();
-
-                    string picName = System.IO.Path.GetFileName(file.FileName);
-                    String photo = YATUser.Id + Path.GetExtension(picName);
-                    file.SaveAs(Server.MapPath("~/Pics/" + photo));
-
-                    YATUser.Photo = photo;
-                    dbContext.SaveChanges();
-                }
-
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    file.InputStream.CopyTo(ms);
-                    byte[] array = ms.GetBuffer();
-                }
-
-            }
-            return RedirectToAction("Index", "Analytics");
+            return View();
         }
     }
 }

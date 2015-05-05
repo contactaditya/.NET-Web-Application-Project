@@ -84,7 +84,7 @@ namespace BusinessLayer
                            group user by user.RegistrationDate.Month into tempTable
                            select new IntRow { name = tempTable.Key, value = tempTable.Count() } 
                            into selection
-                           orderby selection.value descending
+                           orderby selection.name
                            select selection;
                 foreach (var row in rows)
                 {
