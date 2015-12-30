@@ -54,7 +54,7 @@ namespace BusinessLayer
                     Deleted = false,
                     InterestedIn = false,
                     Photo = "male.jpg",
-                    RegistrationDate = Convert.ToDateTime("01/20/2015"),
+                    RegistrationDate = Convert.ToDateTime("01/10/2015"),
                     LastLoginDate = DateTime.Now,
                 };
                 var sue = new User
@@ -67,7 +67,7 @@ namespace BusinessLayer
                     Deleted = false,
                     InterestedIn = true,
                     Photo = "female.jpg",
-                    RegistrationDate = Convert.ToDateTime("04/30/2015"),
+                    RegistrationDate = Convert.ToDateTime("04/10/2015"),
                     LastLoginDate = DateTime.Now,
                 };
                 var Ariel = new User
@@ -81,7 +81,7 @@ namespace BusinessLayer
                     Deleted = false,
                     InterestedIn = false,
                     Photo = "male.jpg",
-                    RegistrationDate = Convert.ToDateTime("04/20/2015"),
+                    RegistrationDate = Convert.ToDateTime("04/10/2015"),
                     LastLoginDate = DateTime.Now,
                 };
                 dbContext.User.Add(paul);
